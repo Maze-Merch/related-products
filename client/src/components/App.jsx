@@ -11,12 +11,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1>Related Products</h1>
+      <h2>Related Products</h2>
     );
   }
 }
 
 export default App;
 
-const wrapper = document.getElementById('container');
-wrapper ? ReactDOM.render(<App />, wrapper) : false;
+ReactDOM.render(<App />, document.getElementById('app'));
