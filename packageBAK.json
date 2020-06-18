@@ -1,14 +1,17 @@
 {
-  "name": "maze",
+  "name": "",
   "version": "",
   "description": "",
   "author": "",
   "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
   "scripts": {
-    "test": "jest",
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --watch",
-    "lint": "./node_modules/.bin/eslint"
+    "build": "webpack --mode production",
+    "lint": "./node_modules/.bin/eslint",
+    "test": "jest"
   },
   "dependencies": {
     "babel-jest": "^26.0.1",
@@ -26,6 +29,7 @@
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.20.0",
