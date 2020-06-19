@@ -8,13 +8,25 @@ class RelatedProducts extends React.Component {
 
   render() {
     return (
-      <ul className="list-group list-group-horizontal">
-        <li className="list-group-item">Product Card 1</li>
-        <li className="list-group-item">Product Card 2</li>
-        <li className="list-group-item">Product Card 3</li>
-        <li className="list-group-item">Product Card 4</li>
-        <li className="list-group-item">Product Card 5</li>
-      </ul>
+      <div className="rp-container">
+        <div className="row rp-row">
+          <div className="col rp-card">
+            1 of 5
+          </div>
+          <div className="col rp-card">
+            2 of 5
+          </div>
+          <div className="col rp-card d-none d-sm-block d-md-block d-lg-block d-xl-block">
+            3 of 5
+          </div>
+          <div className="col rp-card d-none d-sm-none d-md-block d-lg-block d-xl-block">
+            4 of 5
+          </div>
+          <div className="col rp-card d-none d-sm-none d-md-none d-lg-none d-xl-block">
+            5 of 5
+          </div>
+        </div>
+      </div>
     );
   }
 }
