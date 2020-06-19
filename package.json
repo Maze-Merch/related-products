@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "start": "concurrently --kill-others-on-fail \"npm run build\" \"nodemon server/index.js\"",
-    "build": "webpack --watch",
+    "build": "webpack --watch --mode development",
     "lint": "./node_modules/.bin/eslint"
   },
   "keywords": [],

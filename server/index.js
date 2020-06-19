@@ -14,6 +14,6 @@ app.use(cors());
   default to sending back our index.html which is why when we go to
   http://localhost:3001/ we will see our react application
 */
-app.use(express.static('client/dist'));
+app.use(express.static('public'));
 
-app.listen(3001);
+app.listen(3002);
