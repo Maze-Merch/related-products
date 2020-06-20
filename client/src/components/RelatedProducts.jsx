@@ -25,10 +25,10 @@ class RelatedProducts extends React.Component {
           <div className="col rp-card">
             2 of 5
           </div>
-          <div className="col rp-card d-none d-sm-block d-md-block d-lg-block d-xl-block">
+          <div className="col rp-card d-none d-sm-none d-md-block d-lg-block d-xl-block">
             3 of 5
           </div>
-          <div className="col rp-card d-none d-sm-none d-md-block d-lg-block d-xl-block">
+          <div className="col rp-card d-none d-sm-none d-md-none d-lg-block d-xl-block">
             4 of 5
           </div>
           <div className="col rp-card d-none d-sm-none d-md-none d-lg-none d-xl-block">
