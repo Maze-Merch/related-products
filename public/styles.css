@@ -1,12 +1,12 @@
 .rp-container {
-
-  min-height: 220px;
+  /* min-height: 220px; */
   border: 1px solid rgba(0,0,0,.125);
+  overflow: hidden;
 }
 .rp-row {
   /* padding: 10px; */
   margin-left: 0;
-  width: 100%;
+  /* width: 100%; */
 }
 .rp-col {
   position: relative;
@@ -16,7 +16,7 @@
   border: 1px solid rgba(0,0,0,.125);
   /* background-color:#ccc; */
   min-width: 145px;
-  max-width: 219px;
+  max-width: 220px;
   min-height: 310px;
   max-height: 310px;
   /* margin-left: 5px; */
