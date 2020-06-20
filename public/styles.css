@@ -13,11 +13,11 @@
 .rp-card, li.rp-card {
   border-radius: .25rem;
   border: 1px solid rgba(0,0,0,.125);
-  background-color:#ccc;
+  /* background-color:#ccc; */
   min-width: 145px;
   max-width: 210px;
-  min-height: 300px;
-  max-height: 300px;
+  min-height: 310px;
+  max-height: 310px;
   margin-left: 5px;
   padding: 5px;
   overflow: hidden;
@@ -29,12 +29,17 @@ li.rp-card {
 .rp-card:first-child, li.rp-card:first-child{
   margin-left: 0;
 }
-.rp-card-image {
-  text-align: center;
+.rp-card-image-box {
+  width:80%;
+  /* min-height:80vh; */
+  max-height:175px;
+  margin:auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* not really needed with auto margin on img*/
 }
 .rp-card img {
-  max-height: 175px;
-  margin: -5px -5px 0px -15px;
+  max-height: 185px;
 }
 .rp-card-category {
   margin: 5px 0px;

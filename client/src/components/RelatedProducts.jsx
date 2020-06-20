@@ -11,8 +11,8 @@ class RelatedProducts extends React.Component {
       <div className="rp-container">
         <div className="row rp-row">
           <div className="col rp-card">
-            <div className="rp-card-image">
-              <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" className="rp-card-img-top" alt="..." />
+            <div className="rp-card-image-box">
+              <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" className="rp-card-image" alt="..." />
             </div>
             <div className="rp-card-body">
               <div className="rp-card-category">CATEGORY</div>
