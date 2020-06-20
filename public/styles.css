@@ -23,6 +23,9 @@
   overflow: hidden;
   line-height: 1.25;
 }
+.rp-card:hover {
+  background-color: hsla(216, 47%, 87%, 0.20);
+}
 li.rp-card {
   width: 210px;
 }
@@ -40,6 +43,9 @@ li.rp-card {
 .rp-card img {
   max-height: 185px;
 }
+.rp-card-body {
+  cursor: pointer;
+}
 .rp-card-category {
   margin: 5px 0px;
 }
@@ -49,4 +55,30 @@ li.rp-card {
 .rp-card-body h5 {
   font-size: 1rem;
   margin-bottom: 0px;
+}
+.rp-favorite {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  float: right;
+  top: 0px;
+  padding: 5px;
+  color: hsla(54, 83%, 55%, 0.45);
+  z-index: 5000;
+  cursor: pointer;
+  /* background-color: #fff; */
+}
+.rp-favorite svg .bi .bi-star {
+  /* position: relative; */
+  /* fill: hsla(54, 83%, 55%, 0.91); */
+}
+.rp-favorite svg:hover {
+  fill: hsla(54, 83%, 55%, 0.95);
+}
+.rp-favorite svg {
+  position: absolute;
+  float: left;
+  top: 0;
+  left: 3px;
+
 }
