@@ -19,7 +19,7 @@
   min-height: 310px;
   max-height: 310px;
   margin-left: 5px;
-  padding: 5px;
+  padding: 0px;
   overflow: hidden;
   line-height: 1.25;
 }
@@ -33,18 +33,22 @@ li.rp-card {
   margin-left: 0;
 }
 .rp-card-image-box {
-  /* width:80%; */
-  max-height:175px;
-  /* margin:auto; */
+  width:100%;
+  /* max-height:175px;
+  max-width: 200px; */
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 .rp-card img {
   max-height: 185px;
 }
 .rp-card-body {
   cursor: pointer;
+  position: absolute;
+  top:185px;
+  padding-left: 5px;
 }
 .rp-card-category {
   margin: 5px 0px;
@@ -61,17 +65,15 @@ li.rp-card {
   width: 20px;
   height: 20px;
   float: right;
-  top: 0px;
+  top: 5px;
+  right: 5px;
   padding: 5px;
   color: hsla(54, 83%, 55%, 0.45);
   z-index: 5000;
   cursor: pointer;
   /* background-color: #fff; */
 }
-.rp-favorite svg .bi .bi-star {
-  /* position: relative; */
-  /* fill: hsla(54, 83%, 55%, 0.91); */
-}
+
 .rp-favorite svg:hover {
   fill: hsla(54, 83%, 55%, 0.95);
 }
