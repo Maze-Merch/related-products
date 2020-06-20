@@ -14,11 +14,11 @@ class App extends React.Component {
     return (
       <div>
         <div id="relatedProducts">
-          <h2>Related Products</h2>
+          <h4>Related Products</h4>
           <RelatedProducts />
         </div>
         <div id="myOutfits">
-          <h2>My Outfits</h2>
+          <h4>My Outfits</h4>
           <MyOutfits />
         </div>
       </div>

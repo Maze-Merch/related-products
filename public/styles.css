@@ -10,7 +10,7 @@
 .rp-col {
   position: relative;
 }
-.rp-card{
+.rp-card, li.rp-card {
   border-radius: .25rem;
   border: 1px solid rgba(0,0,0,.125);
   background-color:#ccc;
@@ -19,5 +19,30 @@
   min-height: 300px;
   max-height: 300px;
   margin-left: 5px;
-  padding: 5px 10px;
+  padding: 5px;
+  overflow: hidden;
+  line-height: 1.25;
+}
+li.rp-card {
+  width: 210px;
+}
+.rp-card:first-child, li.rp-card:first-child{
+  margin-left: 0;
+}
+.rp-card-image {
+  text-align: center;
+}
+.rp-card img {
+  max-height: 175px;
+  margin: -5px -5px 0px -15px;
+}
+.rp-card-category {
+  margin: 5px 0px;
+}
+.rp-card-category, p, .rp-card-price {
+  font-size: .75rem;
+}
+.rp-card-body h5 {
+  font-size: 1rem;
+  margin-bottom: 0px;
 }

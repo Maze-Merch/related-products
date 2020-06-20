@@ -11,7 +11,16 @@ class RelatedProducts extends React.Component {
       <div className="rp-container">
         <div className="row rp-row">
           <div className="col rp-card">
-            1 of 5
+            <div className="rp-card-image">
+              <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" className="rp-card-img-top" alt="..." />
+            </div>
+            <div className="rp-card-body">
+              <div className="rp-card-category">CATEGORY</div>
+              <h5>Product Name 1 of 5</h5>
+              <p className="rp-card-text">Some quick example text to build on the card title.</p>
+              <div className="rp-card-price">$125</div>
+              <div className="rp-card-stars">*****</div>
+            </div>
           </div>
           <div className="col rp-card">
             2 of 5
