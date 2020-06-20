@@ -4,8 +4,9 @@
   border: 1px solid rgba(0,0,0,.125);
 }
 .rp-row {
-  padding: 10px;
+  /* padding: 10px; */
   margin-left: 0;
+  width: 100%;
 }
 .rp-col {
   position: relative;
@@ -15,10 +16,10 @@
   border: 1px solid rgba(0,0,0,.125);
   /* background-color:#ccc; */
   min-width: 145px;
-  max-width: 210px;
+  max-width: 219px;
   min-height: 310px;
   max-height: 310px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   padding: 0px;
   overflow: hidden;
   line-height: 1.25;
