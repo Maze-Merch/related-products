@@ -7,6 +7,7 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
+    console.log('RP props', this.props);
     return (
       <div className="rp-container">
         <div className="row rp-row">
