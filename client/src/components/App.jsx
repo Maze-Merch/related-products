@@ -20,19 +20,19 @@ class App extends React.Component {
 
   getRelatedProductsIds() {
     const { mainProdId } = this.state;
-    fetch(`http://52.26.193.201:3000/products/${mainProdId}/styles`)
+    fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
       .then((res) => res.json())
-      .then((data) => this.setState({ relatedProdIds: data }))
+      .then((data) => this.setState({ relatedProdIds: [...new Set(data)] }))
       .catch((err) => console.log('Error getting related prod ids', err));
   }
 
   render() {
-    const { relatedProdIds } = this.state;
+    const { mainProdId, relatedProdIds } = this.state;
     return (
       <div>
         <div id="relatedProducts">
           <h4>Related Products</h4>
-          <RelatedProducts productIds={relatedProdIds} />
+          <RelatedProducts productIds={relatedProdIds} mainProdId={mainProdId} />
         </div>
         <div id="myOutfits">
           <h4>My Outfits</h4>
