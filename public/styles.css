@@ -1,12 +1,9 @@
 .rp-container {
-  /* min-height: 220px; */
   border: 1px solid rgba(0,0,0,.125);
   overflow: hidden;
 }
 .rp-row {
-  /* padding: 10px; */
   margin-left: 0;
-  /* width: 100%; */
 }
 .rp-col {
   position: relative;
@@ -14,12 +11,10 @@
 .rp-card, li.rp-card {
   border-radius: .25rem;
   border: 1px solid rgba(0,0,0,.125);
-  /* background-color:#ccc; */
   min-width: 145px;
   max-width: 220px;
   min-height: 310px;
   max-height: 310px;
-  /* margin-left: 5px; */
   padding: 0px;
   overflow: hidden;
   line-height: 1.25;
@@ -70,13 +65,12 @@ li.rp-card {
   right: 5px;
   padding: 5px;
   color: hsla(54, 83%, 55%, 0.45);
-  z-index: 5000;
+  z-index: 1000;
   cursor: pointer;
-  /* background-color: #fff; */
 }
 
 .rp-favorite svg:hover {
-  fill: hsla(54, 83%, 55%, 0.95);
+  fill: hsla(54, 83%, 55%, 1.00);
 }
 .rp-favorite svg {
   position: absolute;
