@@ -18,7 +18,7 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    console.log('RP list = ', this.props);
+    // console.log('RP list = ', this.props);
     return (
       <div className="col rp-card">
         <div className="rp-favorite">
