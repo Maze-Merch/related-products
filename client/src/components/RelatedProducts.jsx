@@ -1,34 +1,59 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import regeneratorRuntime from "regenerator-runtime";
 import RelatedProductsList from './RelatedProductsList';
 
+const PRODUCTS = [];
+
 class RelatedProducts extends React.Component {
+
   constructor(props) {
     super(props);
-    const { productIds } = this.props;
+
     this.state = {
-      relProdIds: [productIds],
-      relatedProducts: [],
+      // relProdIds: [productIds],
+      relatedProducts: [PRODUCTS],
     };
-    this.getProductInformationById = this.getProductInformationById.bind(this);
+    // this.getProductInformationById = this.getProductInformationById.bind(this);
     this.fetchProduct = this.fetchProduct.bind(this);
+    this.productIds = this.props.productIds;
   }
 
   componentDidMount() {
-    // this.getProductInformationById();
+    // getProductInformationById()
+    console.log('componentDidMount = ', this.props.productIds);
   }
 
-  getProductInformationById() {
-    const { relProdId } = this.state;
-    relProdId.map((id) => this.fetchProduct(id));
+  componentDidUpdate() {
+    // const productIds = this.props.productIds;
+    console.log('componentDidUpdate = ', this.props.productIds);
+    // this.props.productIds.map((id) => this.fetchProduct(id));
+    for (let i = 0; i < this.props.productIds.length; i += 1) {
+      this.fetchProduct(this.props.productIds[i]);
+    }
+    console.log('RP PRODUCTS', PRODUCTS);
   }
 
-  fetchProduct(id) {
-    fetch(`http://52.26.193.201:3000/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => this.setState({ relatedProducts: [...data] }))
-      .catch((err) => console.log('Error getting related prod ids', err));
+  // getProductInformationById() {
+  //   // const { relProdId } = this.state;
+  //   this.productIds.map((id) => this.fetchProduct(id));
+  // }
+
+  async fetchProduct(id) {
+    const response = await fetch(`http://52.26.193.201:3000/products/${id}`);
+    const data = await response.json();
+    console.log('Data', data);
+    PRODUCTS.push(data);
+    this.state.relatedProducts.concat(data);
+    // this.setState({ relatedProducts: data });
+    // .catch((err) => console.log('Error getting related prod ids', err));
   }
+
+  // fetchProduct(id) {
+  //   fetch(`http://52.26.193.201:3000/products/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => this.setState({ relatedProducts: data }))
+  //     .catch((err) => console.log('Error getting related prod ids', err));
+  // }
 
   render() {
     console.log('RP props', this.props);
@@ -36,7 +61,7 @@ class RelatedProducts extends React.Component {
     return (
       <div className="rp-container">
         <div className="row rp-row">
-          <RelatedProductsList relatedProducts={relatedProducts} />
+          <RelatedProductsList relatedProducts={PRODUCTS} />
         </div>
       </div>
     );

@@ -11,20 +11,31 @@ class App extends React.Component {
       relatedProdIds: [],
 
     };
-    this.getRelatedProductsIds = this.getRelatedProductsIds.bind(this);
+    // this.getRelatedProductsIds = this.getRelatedProductsIds.bind(this);
+    this.relatedIdArr = [];
   }
 
   componentDidMount() {
-    this.getRelatedProductsIds();
-  }
-
-  getRelatedProductsIds() {
+    // this.getRelatedProductsIds();
+    // move fetch to here and use async await
     const { mainProdId } = this.state;
     fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
       .then((res) => res.json())
       .then((data) => this.setState({ relatedProdIds: [...new Set(data)] }))
       .catch((err) => console.log('Error getting related prod ids', err));
   }
+
+  componentDidUpdate() {
+    // this.getRelatedProductsIds();
+  }
+
+  // getRelatedProductsIds() {
+  //   const { mainProdId } = this.state;
+  //   fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
+  //     .then((res) => res.json())
+  //     .then((data) => this.setState({ relatedProdIds: [...new Set(data)] }))
+  //     .catch((err) => console.log('Error getting related prod ids', err));
+  // }
 
   render() {
     const { mainProdId, relatedProdIds } = this.state;
@@ -39,7 +50,7 @@ class App extends React.Component {
           <MyOutfits />
         </div>
       </div>
-    );
+    );s
   }
 }
 
