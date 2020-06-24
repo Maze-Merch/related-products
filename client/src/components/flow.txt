@@ -1,0 +1,29 @@
+details.id
+details.name
+details.slogan
+details.description
+details.category
+details.default_price
+
+styles.results ===
+styles.style_id
+styles.name
+styles.original_price
+styles.sale_price
+styles.photos[0].thumnail_url
+styles.photos[0].url
+
+cardDetails=[];
+for(let i = 0; i < details.length; i++){
+    // build the objects to put in the array
+    result =
+    {
+      id: details.id,
+      name: details.name,
+      slogan: details.slogan
+      description: details.description
+      category: details.category
+      default_price: details.default_price
+    },
+  }
+}
