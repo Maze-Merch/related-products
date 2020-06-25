@@ -4,8 +4,8 @@ import CardImage from './CardImage';
 import CardBody from './CardBody';
 
 const RelatedProductsList = ({details, styles}) => {
-  console.log('RP list = ', props);
-  return (
+  // console.log('RP list = ', props);
+  return (//map on details here
     <div className="col rp-card">
       <CardFavorite />
       <div className="rp-card-image-box">

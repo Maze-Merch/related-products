@@ -16,6 +16,7 @@ class App extends React.Component {
     this.relatedIdArr = [];
     this.productStylesArr = [];
     this.productDetailsArr = [];
+    this.products = [];
     // this.fetchRelatedIds = this.fetchRelatedIds.bind(this);
     this.fetchProductDetails = this.fetchProductDetails.bind(this);
     this.fetchProductStyles = this.fetchProductStyles.bind(this);
@@ -28,6 +29,8 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.relatedIdArr = [...new Set(data)];
+        this.relatedIdArr.sort();
+        console.log(this.relatedIdArr);
         for (let i = 0; i < this.relatedIdArr.length; i += 1) {
           this.fetchProductDetails(this.relatedIdArr[i]);
           this.fetchProductStyles(this.relatedIdArr[i]);
@@ -36,10 +39,20 @@ class App extends React.Component {
         // console.log(this.productStylesArr);
       })
       .catch((err) => console.log('Error getting related prod ids', err));
-    this.setState({ productDetails: this.productDetailsArr });
-    this.setState({ productStyles: this.productStylesArr });
+    // this.setState({ productDetails: this.productDetailsArr });
+    // this.setState({ productStyles: this.productStylesArr });
   }
 
+  mergeObjects() {
+    for (let i = 0; i < this.prodDetailsArr.length; i += 1) {
+      // working with id
+        // if this.prodDetailsArr[i].id === this.productStylesArr[i].product_id
+        for (let j = 0; j < this.productStylesArr[0].results.length; j += 1) {
+          let mergedObj = Object.assign(this.prodDetailsArr[i], this.productStylesArr.results[j])
+          this.products.push(mergedObj);
+        }
+    }
+  }
   // async fetchRelatedIds() {
   //   const { mainProdId } = this.state;
   //   const response = await fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`);
