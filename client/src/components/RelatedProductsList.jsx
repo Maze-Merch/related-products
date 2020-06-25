@@ -12,7 +12,7 @@ const RelatedProductsList = ({details, styles}) => {
         <CardImage id={details.id} name={details.name} styles={styles}/>
       </div>
       <div className="rp-card-body">
-        <CardBody name={details.name} slogan={details.slogan} desc={details.description} cat={details.category} price={details.default_price} />
+        <CardBody name={details.name} slogan={details.slogan} desc={details.description} cat={details.category} price={details.default_price} styles={styles}/>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardBody = ({name, slogan, desc, cat, price}) => (
+const CardBody = ({name, slogan, desc, cat, price, styles}) => (
   <div>
     <div className="rp-card-category">CATEGORY</div>
     <h5>Product Name 1 of 5</h5>
