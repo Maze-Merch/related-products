@@ -5,24 +5,27 @@ import CardImage from './CardImage';
 import CardBody from './CardBody';
 import styles from './exampleData/prodStyles.json';
 
-const RelatedProductsList = ({name, slogan, desc, cat, price}) => {
-  // console.log('RP list = ', styles);
-  const results = [];
-  for (let i = 0; i < styles.length; i += 1) {
-    results.push(styles[i].results);
+const RelatedProductsList = ({id, name, slogan, desc, cat, price, count}) => {
+  // console.log('id = ', id);
+  // console.log('count = ', count);
+  // console.log('Res length', styles[count].results.length);
+  const styleRes = [];
+  for (let i = 0; i < styles[count].results.length; i += 1) {
+    styleRes.push(styles[count].results[i]);
   }
-  console.log('Results= ', results);
+  // console.log('RP list = ', styles);
+  console.log('Results= ', styleRes);
   return (
     <div>
       {
-        results.map((sty, i) =>
+        styleRes.map((sty, i) =>
         <div className="col rp-card">
           <CardFavorite />
           <div className="rp-card-image-box">
-            <CardImage id={sty.style_id} name={name} styName={sty.name} thumb={sty.photos} />
+            <CardImage id={sty.style_id} name={name} styName={sty.name} thumb={sty.photos[0].thumbnail_url} key={i} />
           </div>
           <div className="rp-card-body">
-            <CardBody name={name} slogan={slogan} desc={desc} cat={cat} price={price} stName={sty.name} salePr={sty.sale_price > 0 ? sty.sale_price : null} />
+            <CardBody name={name} slogan={slogan} desc={desc} cat={cat} price={sty.original_price} stName={sty.name} salePr={sty.sale_price > 0 ? sty.sale_price : null} key={i} />
           </div>
         </div>
         )}
