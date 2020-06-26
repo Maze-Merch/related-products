@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
 import RelatedProducts from './RelatedProducts';
 import MyOutfits from './MyOutfits';
+import RPCarousel from './RPCarousel';
+import Carousel from './Carousel';
 import prodDetailsData from './exampleData/prodDetails.json';
 import prodStylesData from './exampleData/prodStyles.json';
 let _ = require('lodash');
@@ -79,9 +81,8 @@ class App extends React.Component {
     const { prodDetails, prodStyles } = this.state;
     return (
       <div>
-        <div id="relatedProducts">
-          <h4>Related Products</h4>
-          <RelatedProducts details={prodDetails} styles={prodStyles} />
+        <div id="Carousel">
+          <RPCarousel details={prodDetails} styles={prodStyles} />
         </div>
         <div id="myOutfits">
           <h4>My Outfits</h4>

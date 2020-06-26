@@ -10,11 +10,11 @@
   position: relative;
 }
 .rp-card-container {
-  position: relative;
-  flex-direction: row;
+  /* position: relative;
+  flex-direction: row; */
 }
 .rp-card, li.rp-card {
-  border-radius: .25rem;
+  /* border-radius: .25rem;
   border: 1px solid rgba(0,0,0,.125);
   min-width: 145px;
   max-width: 220px;
@@ -23,6 +23,7 @@
   padding: 0px;
   overflow: hidden;
   line-height: 1.25;
+  display: flex; */
 }
 .rp-card:hover {
   background-color: hsla(216, 47%, 87%, 0.20);
@@ -31,38 +32,37 @@ li.rp-card {
   width: 210px;
 }
 .rp-card:first-child, li.rp-card:first-child{
-  margin-left: 0;
+  /* margin-left: 0; */
 }
 .rp-card-image-box {
-  width:100%;
-  /* max-height:175px;
-  max-width: 200px; */
+  /* width:100%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: absolute; */
 }
 .rp-card img {
-  max-height: 185px;
+  /* max-height: 185px; */
 }
 .rp-card-body {
-  cursor: pointer;
+  /* cursor: pointer;
   position: absolute;
   top:185px;
-  padding-left: 5px;
+  padding-left: 5px; */
 }
 .rp-card-category {
-  margin: 5px 0px;
+  /* margin: 5px 0px; */
 }
 .rp-card-category, p, .rp-card-price {
   font-size: .75rem;
 }
 .rp-card-body h5 {
   font-size: 1rem;
-  margin-bottom: 0px;
+  /* margin-bottom: 0px; */
 }
 .rp-favorite {
-  position: relative;
+  /* position: relative;
   width: 20px;
   height: 20px;
   float: right;
@@ -71,17 +71,17 @@ li.rp-card {
   padding: 5px;
   color: hsla(54, 83%, 55%, 0.45);
   z-index: 1000;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .rp-favorite svg:hover {
   fill: hsla(54, 83%, 55%, 1.00);
 }
 .rp-favorite svg {
-  position: absolute;
+  /* position: absolute;
   float: left;
   top: 0;
-  left: 3px;
+  left: 3px; */
 }
 
 /* SLICK CAROSEL STYLES */

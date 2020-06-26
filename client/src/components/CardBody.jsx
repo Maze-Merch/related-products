@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CardBody = ({name, slogan, desc, cat, price, stName, salePr}) => {
-  console.log('stName', price);
+  // console.log('stName', price);
   return (
 
     <div>
