@@ -14,22 +14,39 @@ const RelatedProductsList = ({id, name, slogan, desc, cat, price, count}) => {
     styleRes.push(styles[count].results[i]);
   }
   // console.log('RP list = ', styles);
-  console.log('Results= ', styleRes);
+  // console.log('Results= ', styleRes);
   return (
-    <div>
+    <span className="rp-card-container">
       {
-        styleRes.map((sty, i) =>
-        <div className="col rp-card">
-          <CardFavorite />
-          <div className="rp-card-image-box">
-            <CardImage id={sty.style_id} name={name} styName={sty.name} thumb={sty.photos[0].thumbnail_url} key={i} />
-          </div>
-          <div className="rp-card-body">
-            <CardBody name={name} slogan={slogan} desc={desc} cat={cat} price={sty.original_price} stName={sty.name} salePr={sty.sale_price > 0 ? sty.sale_price : null} key={i} />
-          </div>
-        </div>
-        )}
-    </div>
+        styleRes.map((sty, i) => (
+          <li className="list-group-item rp-card">
+            <CardFavorite />
+            <div className="rp-card-image-box">
+              <CardImage
+                id={sty.style_id}
+                name={name}
+                styName={sty.name}
+                thumb={sty.photos[0].thumbnail_url}
+                key={i}
+              />
+            </div>
+            <div className="rp-card-body">
+              <CardBody
+                name={name}
+                slogan={slogan}
+                desc={desc}
+                cat={cat}
+                price={sty.original_price}
+                stName={sty.name}
+                salePr={sty.sale_price > 0 ? sty.sale_price : null}
+                key={i}
+              />
+            </div>
+          </li>
+        ))
+      }
+    </span>
+
   );
 };
 

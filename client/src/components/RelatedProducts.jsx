@@ -13,12 +13,19 @@ const RelatedProducts = ({details}) => {
   // console.log('Counter', counter);
   return (
     <div className="rp-container">
-      <div className="row rp-row">
+      <ul className="list-group list-group-horizontal rp-row">
         {details.map((det, i) => (
-
-          <RelatedProductsList id={det.id} name={det.name} slogan={det.slogan} desc={det.description} cat={det.category} price={det.price} count={incrementCount()} key={i} />
+          <RelatedProductsList
+            id={det.id}
+            name={det.name}
+            slogan={det.slogan}
+            desc={det.description}
+            cat={det.category}
+            price={det.price}
+            count={incrementCount()}
+            key={i} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
