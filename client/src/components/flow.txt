@@ -27,3 +27,10 @@ for(let i = 0; i < details.length; i++){
     },
   }
 }
+for (let i = 0; i < this.prodDetailsArr.length; i += 1) {
+      // if this.prodDetailsArr[i].id === this.productStylesArr[i].product_id
+      for (let j = 0; j < this.productStylesArr[0].results.length; j += 1) {
+        const mergedObj = Object.assign(this.prodDetailsArr[i], this.productStylesArr.results[j]);
+        this.products.push(mergedObj);
+      }
+}

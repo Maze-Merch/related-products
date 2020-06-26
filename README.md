@@ -5,5 +5,7 @@ Related Products Component
   + regenerator-runtime
   + "@babel/plugin-transform-runtime": "^7.10.3",
   + "@babel/runtime": "^7.10.3",
+- Utilities
+  + Lodash - to merge product objects
 
 

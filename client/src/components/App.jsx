@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
 import RelatedProducts from './RelatedProducts';
 import MyOutfits from './MyOutfits';
+import prodDetailsData from './exampleData/prodDetails.json';
+import prodStylesData from './exampleData/prodStyles.json';
+let _ = require('lodash');
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -10,8 +15,8 @@ class App extends React.Component {
     this.state = {
       mainProdId: 5,
       relatedProdIds: [],
-      productDetails: [],
-      productStyles: [],
+      prodDetails: prodDetailsData,
+      prodStyles: prodStylesData,
     };
     this.relatedIdArr = [];
     this.productStylesArr = [];
@@ -23,62 +28,60 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.fetchRelatedIds();
     const { mainProdId } = this.state;
-    fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
-      .then((res) => res.json())
-      .then((data) => {
-        this.relatedIdArr = [...new Set(data)];
-        this.relatedIdArr.sort();
-        console.log(this.relatedIdArr);
-        for (let i = 0; i < this.relatedIdArr.length; i += 1) {
-          this.fetchProductDetails(this.relatedIdArr[i]);
-          this.fetchProductStyles(this.relatedIdArr[i]);
-        }
-        // console.log(this.productDetailsArr);
-        // console.log(this.productStylesArr);
-      })
-      .catch((err) => console.log('Error getting related prod ids', err));
-    // this.setState({ productDetails: this.productDetailsArr });
-    // this.setState({ productStyles: this.productStylesArr });
+    // fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     this.relatedIdArr = [...new Set(data)];
+    //     // this.relatedIdArr.sort();
+    //     console.log(this.relatedIdArr);
+    //     for (let i = 0; i < this.relatedIdArr.length; i += 1) {
+    //       this.fetchProductDetails(this.relatedIdArr[i]);
+    //       this.fetchProductStyles(this.relatedIdArr[i]);
+    //     }
+    //   })
+    //   .catch((err) => console.log('Error getting related prod ids', err));
+    // this.setState({ prodDetails: this.productDetailsArr, prodStyles: this.productStylesArr });
+  }
+
+  componentDidUpdate() {
+    console.log ('State - styles', this.state);
+    // console.log('this.productDetailsArr', this.productDetailsArr)
   }
 
   mergeObjects() {
     for (let i = 0; i < this.prodDetailsArr.length; i += 1) {
-      // working with id
-        // if this.prodDetailsArr[i].id === this.productStylesArr[i].product_id
-        for (let j = 0; j < this.productStylesArr[0].results.length; j += 1) {
-          let mergedObj = Object.assign(this.prodDetailsArr[i], this.productStylesArr.results[j])
-          this.products.push(mergedObj);
-        }
+      // if this.prodDetailsArr[i].id === this.productStylesArr[i].product_id
+      for (let j = 0; j < this.productStylesArr[0].results.length; j += 1) {
+        const mergedObj = Object.assign(this.prodDetailsArr[i], this.productStylesArr.results[j]);
+        this.products.push(mergedObj);
+      }
     }
   }
-  // async fetchRelatedIds() {
-  //   const { mainProdId } = this.state;
-  //   const response = await fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`);
-  //   const relProdIds = await response.json();
-  //   this.setState({ relatedProdIds: [...new Set(relProdIds)] });
-  // }
 
   async fetchProductDetails(id) {
+    // const { prodDetails } = this.state;
     const response = await fetch(`http://52.26.193.201:3000/products/${id}`);
-    const prodDetails = await response.json();
-    this.productDetailsArr.push(prodDetails);
+    const details = await response.json();
+    this.productDetailsArr.push(details);
+    // prodDetails.push(details);
   }
 
   async fetchProductStyles(id) {
+    // const { prodStyles } = this.state;
     const response = await fetch(`http://52.26.193.201:3000/products/${id}/styles`);
     const styles = await response.json();
-    this.productStylesArr.push(styles);
+    this.productStylesArr.push(styles.results);
+    // prodStyles.push(styles.results);
   }
 
   render() {
-    const { relatedProdIds } = this.state;
+    const { prodDetails, prodStyles } = this.state;
     return (
       <div>
         <div id="relatedProducts">
           <h4>Related Products</h4>
-          <RelatedProducts ids={this.relatedIdArr} styles={this.productStylesArr} details={this.productDetailsArr}/>
+          <RelatedProducts details={prodDetails} styles={prodStyles} />
         </div>
         <div id="myOutfits">
           <h4>My Outfits</h4>

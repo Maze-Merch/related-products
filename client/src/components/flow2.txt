@@ -1,0 +1,3 @@
+Styles is an array with one object
+I need to iterate over results
+From results I need to get Name, price, photos[0].thumnail_url, photos[0].url
