@@ -26,9 +26,9 @@ class App extends React.Component {
     this.productDetailsArr = [];
     this.products = [];
 
-    this.nextProduct = this.nextProduct.bind(this);
-    this.prevProduct = this.prevProduct.bind(this);
-    this.changeTranslateX = this.changeTranslateX.bind(this);
+    // this.nextProduct = this.nextProduct.bind(this);
+    // this.prevProduct = this.prevProduct.bind(this);
+    // this.changeTranslateX = this.changeTranslateX.bind(this);
   }
 
   componentDidMount() {
@@ -70,62 +70,29 @@ class App extends React.Component {
     this.setState({ allProducts: this.products });
   }
 
-  nextProduct() {
-    console.log('next clicked!')
-    const newIndex = this.state.allProducts.idx + 1;
-    this.setState({ product: this.state.allProducts[newIndex] });
-    console.log('Prod index= ', this.state.product.idx);
-    this.changeTranslateX();
-  }
-
-  prevProduct() {
-    const newIndex = this.state.allProducts.idx - 1;
-    this.setState({ product: this.state.allProducts[newIndex] });
-    this.changeTranslateX();
-  }
-
-  changeTranslateX() {
-    let num = this.state.product.idx * (100 / 24);
-    document.getElementById('cardsWrapper').style.transform = `-${num}%`;
-  }
-
   render() {
+
     const { prodDetails, prodStyles, allProducts } = this.state;
+    console.log(allProducts)
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+    };
     return (
       <div id="rpCarousel">
         <h4>Related Products 2</h4>
-        <button
-          type="button"
-          onClick={() => this.nextProduct()}
-          disabled={allProducts.idx === allProducts.length - 1}
-        >
-          Next
-        </button>
-        <button
-          type="button"
-          onClick={() => this.prevProduct()}
-          disabled={allProducts.idx === 0}
-        >
-          Prev
-        </button>
-
-        <div className="cards-slider">
-          <div
-            id="cardsWrapper"
-            className="cards-slider-wrapper"
-            style={{
-              transform: 'translateX(-0%)'
-            }}
-          >
-            { allProducts.map((product) => (
-              <Card
-                id={allProducts.idx}
-                product={product}
-                key={allProducts.idx}
-              />
-            ))}
-          </div>
-        </div>
+        <Slider {...settings}>
+          { allProducts.map((product) => (
+            <Card
+              id={allProducts.idx}
+              product={product}
+              key={allProducts.idx}
+            />
+          ))}
+        </Slider>
       </div>
     );
   }
