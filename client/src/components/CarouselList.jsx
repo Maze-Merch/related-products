@@ -10,12 +10,12 @@ const CarouselList = ({id, name, slogan, desc, cat, price, count}) => {
   for (let i = 0; i < styles[count].results.length; i += 1) {
     styleRes.push(styles[count].results[i]);
   }
-
+// console.log(styleRes);
   return (
     <>
       {
         styleRes.map((sty, i) => (
-          <div className="rp-card">
+          <div className="rp-card" key={i}>
             <CardFavorite />
             <div className="rp-card-image-box">
               <CardImage

@@ -12,7 +12,7 @@ const RelatedProducts = ({details}) => {
   // console.log('RP details', details);
   // console.log('Counter', counter);
   return (
-    <div className="rp-container">
+    <div className="rp-container cards-slider-wrapper">
       <ul className="list-group list-group-horizontal rp-row">
         {details.map((det, i) => (
           <RelatedProductsList

@@ -13,17 +13,26 @@
   /* position: relative;
   flex-direction: row; */
 }
-.rp-card, li.rp-card {
-  /* border-radius: .25rem;
+#rpCarousel {
+  position: relative;
+}
+.cards-slider-wrapper {
+  display: flex;
+  position: absolute;
+}
+.cards-slider {
+  position: relative;
+  max-width: 300px;
+  /* margin: 0 auto; */
+}
+.rp-card {
+  border-radius: .25rem;
   border: 1px solid rgba(0,0,0,.125);
-  min-width: 145px;
-  max-width: 220px;
+  min-width: 300px;
+  /* max-width: 300px; */
   min-height: 310px;
-  max-height: 310px;
-  padding: 0px;
-  overflow: hidden;
-  line-height: 1.25;
-  display: flex; */
+  /* max-height: 310px; */
+  /* flex: 1; */
 }
 .rp-card:hover {
   background-color: hsla(216, 47%, 87%, 0.20);
