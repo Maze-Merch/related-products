@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
-import RelatedProducts from './RelatedProducts';
-import MyOutfits from './MyOutfits';
-import RPCarousel from './RPCarousel';
-import Carousel from './Carousel';
+// import RelatedProducts from './RelatedProducts';
+// import MyOutfits from './MyOutfits';
+// import RPCarousel from './RPCarousel';
+// import Carousel from './Carousel';
+import Slider from 'react-slick';
+import Card from './Card';
 import prodDetailsData from './exampleData/prodDetails.json';
 import prodStylesData from './exampleData/prodStyles.json';
-import { forEach } from 'lodash';
-let _ = require('lodash');
 
 class App extends React.Component {
   constructor(props) {
@@ -18,34 +18,33 @@ class App extends React.Component {
       relatedProdIds: [],
       prodDetails: prodDetailsData,
       prodStyles: prodStylesData,
-      totalProd: 24,
-      prodIndex: 0,
-      nextIndex: 0,
       allProducts: [],
+      product: {},
     };
     this.relatedIdArr = [];
     this.productStylesArr = [];
     this.productDetailsArr = [];
     this.products = [];
-    // this.prodIndex = 0;
-    // this.nextIndex = 0;
-    this.prevIndex = 0;
+
     this.nextProduct = this.nextProduct.bind(this);
     this.prevProduct = this.prevProduct.bind(this);
+    this.changeTranslateX = this.changeTranslateX.bind(this);
   }
 
   componentDidMount() {
     // fetch moved to DataFetcher.jsx
     this.buildProductData();
+    this.setState({ product: this.products[0] });
   }
 
   componentDidUpdate() {
-    // console.log ('State - styles', this.state);
+    console.log ('State didUpdate - All Products', this.state);
+    // console.log('here')
     // console.log('this.productDetailsArr', this.productDetailsArr)
   }
 
   buildProductData() {
-    const { allProducts, prodDetails, prodStyles } = this.state;
+    const { prodDetails, prodStyles } = this.state;
     let count = 0;
     for (let x = 0; x < prodDetails.length; x += 1) {
       for (let i = 0; i < prodStyles[x].results.length; i += 1) {
@@ -64,61 +63,70 @@ class App extends React.Component {
           thumb: prodStyles[x].results[i].photos[0].thumbnail_url,
           img: prodStyles[x].results[i].photos[0].url,
         };
-        allProducts.push(prodInfo);
+        this.products.push(prodInfo);
         count += 1;
       }
     }
+    this.setState({ allProducts: this.products });
   }
 
   nextProduct() {
     console.log('next clicked!')
-    const newIndex = this.prodIndex + 1;
-    newIndex > this.state.totalProd ? newIndex = this.state.totalProd : newIndex
-    this.state.nextIndex = newIndex;
-    this.state.prodIndex = newIndex;
-    console.log('Prod index= ', this.prodIndex);
+    const newIndex = this.state.allProducts.idx + 1;
+    this.setState({ product: this.state.allProducts[newIndex] });
+    console.log('Prod index= ', this.state.product.idx);
+    this.changeTranslateX();
   }
 
   prevProduct() {
-    const newIndex = this.state.prodIndex - 1;
-    newIndex < 0 ? newIndex = 0 : newIndex;
-    this.prevIndex = newIndex;
-    this.prodIndex = newIndex;
+    const newIndex = this.state.allProducts.idx - 1;
+    this.setState({ product: this.state.allProducts[newIndex] });
+    this.changeTranslateX();
+  }
+
+  changeTranslateX() {
+    let num = this.state.product.idx * (100 / 24);
+    document.getElementById('cardsWrapper').style.transform = `-${num}%`;
   }
 
   render() {
-    const { prodDetails, prodStyles } = this.state;
-    console.log(this.state.allProducts);
+    const { prodDetails, prodStyles, allProducts } = this.state;
     return (
-      <>
-        <div id="rpCarousel">
-          <h4>Related Products 2</h4>
-          <button
-            type="button"
-            onClick={() => this.nextProduct()}
-            disabled={this.prodIndex === this.state.totalProd}
-          >
-            Next
-          </button>
-          <button
-            type="button"
-            onClick={() => this.prevProduct()}
-            disabled={this.prodIndex === 0}
-          >
-            Prev
-          </button>
+      <div id="rpCarousel">
+        <h4>Related Products 2</h4>
+        <button
+          type="button"
+          onClick={() => this.nextProduct()}
+          disabled={allProducts.idx === allProducts.length - 1}
+        >
+          Next
+        </button>
+        <button
+          type="button"
+          onClick={() => this.prevProduct()}
+          disabled={allProducts.idx === 0}
+        >
+          Prev
+        </button>
 
-          <div className="cards-slider">
-            <div className="cards-slider-wrapper"
-              style={{
-                transform: `translateX(-${this.state.prodIndex * (100 / 24)}%)`,
-              }}
-            >
-              <RPCarousel details={prodDetails} styles={prodStyles} />
-            </div>
+        <div className="cards-slider">
+          <div
+            id="cardsWrapper"
+            className="cards-slider-wrapper"
+            style={{
+              transform: 'translateX(-0%)'
+            }}
+          >
+            { allProducts.map((product) => (
+              <Card
+                id={allProducts.idx}
+                product={product}
+                key={allProducts.idx}
+              />
+            ))}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
