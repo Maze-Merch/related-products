@@ -15,14 +15,29 @@ const CarouselList = ({id, name, slogan, desc, cat, price, count}) => {
     <>
       {
         styleRes.map((sty, i) => (
-          <div className="carousel-item col-md-4">
-            <CardImage
-              id={sty.style_id}
-              name={name}
-              styName={sty.name}
-              thumb={sty.photos[0].thumbnail_url}
-              key={i}
-            />
+          <div className="rp-card">
+            <CardFavorite />
+            <div className="rp-card-image-box">
+              <CardImage
+                id={sty.style_id}
+                name={name}
+                styName={sty.name}
+                thumb={sty.photos[0].thumbnail_url}
+                key={i}
+              />
+            </div>
+            <div className="rp-card-body">
+              <CardBody
+                name={name}
+                slogan={slogan}
+                desc={desc}
+                cat={cat}
+                price={sty.original_price}
+                stName={sty.name}
+                salePr={sty.sale_price > 0 ? sty.sale_price : null}
+                key={i}
+              />
+            </div>
           </div>
         ))
       }

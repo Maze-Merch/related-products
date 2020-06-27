@@ -16,7 +16,7 @@ const RelatedProductsList = ({id, name, slogan, desc, cat, price, count}) => {
   // console.log('RP list = ', styles);
   // console.log('Results= ', styleRes);
   return (
-    <span className="rp-card-container">
+    <>
       {
         styleRes.map((sty, i) => (
           <li className="list-group-item rp-card">
@@ -45,7 +45,7 @@ const RelatedProductsList = ({id, name, slogan, desc, cat, price, count}) => {
           </li>
         ))
       }
-    </span>
+    </>
 
   );
 };

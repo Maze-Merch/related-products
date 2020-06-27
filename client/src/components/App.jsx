@@ -81,13 +81,15 @@ class App extends React.Component {
     const { prodDetails, prodStyles } = this.state;
     return (
       <div>
-        <div id="rpItemCarousel">
-          <RPCarousel details={prodDetails} styles={prodStyles} />
+        <div id="RelatedProducts">
+          <h4>Related Products 1</h4>
+          <RelatedProducts details={prodDetails} styles={prodStyles} />
         </div>
         <div id="myOutfits">
           <h4>My Outfits</h4>
           <MyOutfits />
         </div>
+
       </div>
     );
   }
