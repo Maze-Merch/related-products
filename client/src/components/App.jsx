@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
-// import RelatedProducts from './RelatedProducts';
-// import MyOutfits from './MyOutfits';
-// import RPCarousel from './RPCarousel';
-// import Carousel from './Carousel';
 import Slider from 'react-slick';
 import Card from './Card';
 import prodDetailsData from './exampleData/prodDetails.json';
@@ -25,10 +21,6 @@ class App extends React.Component {
     this.productStylesArr = [];
     this.productDetailsArr = [];
     this.products = [];
-
-    // this.nextProduct = this.nextProduct.bind(this);
-    // this.prevProduct = this.prevProduct.bind(this);
-    // this.changeTranslateX = this.changeTranslateX.bind(this);
   }
 
   componentDidMount() {
@@ -38,9 +30,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log ('State didUpdate - All Products', this.state);
-    // console.log('here')
-    // console.log('this.productDetailsArr', this.productDetailsArr)
+    // console.log ('State didUpdate - All Products', this.state);
   }
 
   buildProductData() {
@@ -71,15 +61,41 @@ class App extends React.Component {
   }
 
   render() {
-
     const { prodDetails, prodStyles, allProducts } = this.state;
-    console.log(allProducts)
+    // console.log(allProducts)
     const settings = {
       dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
     };
     return (
       <div id="rpCarousel">

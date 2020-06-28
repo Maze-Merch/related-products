@@ -31,7 +31,8 @@
     "react-dom": "^16.13.1",
     "react-slick": "^0.26.1",
     "regenerator-runtime": "^0.13.5",
-    "sass": "^1.26.8"
+    "sass": "^1.26.8",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
