@@ -7,7 +7,7 @@ const CardBody = ({name, slogan, desc, cat, price, stName, salePr}) => {
 
     <div>
       <div className="rp-card-category">{ucCat}</div>
-      <h5>{name} - {stName}</h5>
+      <h5>{name}: <br /> {stName}</h5>
       <p className="rp-card-text">{slogan}</p>
       <div className="rp-card-price">$ {price}</div>
       <div className="rp-card-stars">*****</div>

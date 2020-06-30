@@ -1,3 +1,6 @@
+#rpCarousel, #myOutfits h4 {
+  color: rgba(0, 0, 0, 0.70);
+}
 #rpCarousel {
   margin-bottom: 35px;
 }
@@ -105,7 +108,7 @@
   font-size: .75rem;
 }
 .rp-card-body h5 {
-  font-size: 1rem;
+  font-size: 14px;
   /* margin-bottom: 0px; */
 }
 p.rp-card-text {
