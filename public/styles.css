@@ -109,6 +109,7 @@
 }
 .rp-card-body h5 {
   font-size: 14px;
+  font-weight: 700;
   /* margin-bottom: 0px; */
 }
 p.rp-card-text {
@@ -355,3 +356,10 @@ p.rp-card-text {
   cursor: pointer;
 }
 /* END - MODAL */
+/* MODAL TABLE */
+.modal-container .table {
+  text-align: center;
+}
+.fa-check {
+  color: green;
+}

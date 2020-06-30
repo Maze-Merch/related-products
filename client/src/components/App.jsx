@@ -16,8 +16,10 @@ class App extends React.Component {
       show: false,
       modalInfo: "",
       modalData: [],
+      clickedProdId: 0,
+      clickedProd: {},
       mainProdId: 5,
-      currentProduct: currentProduct,
+      currentProd: currentProduct,
       relatedProdIds: [],
       prodDetails: prodDetailsData,
       prodStyles: prodStylesData,
@@ -29,6 +31,7 @@ class App extends React.Component {
     this.productDetailsArr = [];
     this.products = [];
     this.toggelModel = this.toggelModel.bind(this);
+    this.handleStarClick = this.handleStarClick.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +63,7 @@ class App extends React.Component {
           salePrice: prodStyles[x].results[i].sale_price,
           thumb: prodStyles[x].results[i].photos[0].thumbnail_url,
           img: prodStyles[x].results[i].photos[0].url,
+          features: prodDetails[x].features,
         };
         this.products.push(prodInfo);
         count += 1;
@@ -68,16 +72,28 @@ class App extends React.Component {
     this.setState({ allProducts: this.products });
   }
 
-  toggelModel(info = '') {
+  handleStarClick(e) {
+    this.toggelModel();
+    console.log('TARGET ID=', e.target.dataset.id);
+  }
+
+  handleAddToOutfitClick(e) {
+    console.log('TARGET ID=', e.target.dataset.id);
+  }
+
+  toggelModel() {
     this.setState({
       show: !this.state.show,
-      modalInfo: info,
     });
   }
 
   render() {
     const { allProducts } = this.state;
     // console.log(allProducts)
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+
     const settings = {
       dots: true,
       infinite: true,
@@ -119,6 +135,8 @@ class App extends React.Component {
             displayModal={this.state.show}
             closeModal={this.toggelModel}
             modalInfo={this.state.modalInfo}
+            currentProd={this.state.currentProd}
+            allProd={this.state.allProducts}
           />
         </div>
         <div id="rpCarousel">
@@ -128,14 +146,14 @@ class App extends React.Component {
               <Card
                 product={product}
                 key={allProducts.idx}
-                openModal={this.toggelModel}
+                openModal={this.handleStarClick}
               />
             ))}
           </Slider>
         </div>
         <div id="myOutfits">
           <h4>My Outfits</h4>
-          <MyOutfits />
+          <MyOutfits mainProdId={this.state.mainProdId} />
         </div>
       </>
     );
