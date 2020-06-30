@@ -2,15 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
 import Slider from 'react-slick';
+import Modal from './Modal';
+import MyOutfits from './MyOutfits';
 import Card from './Card';
 import prodDetailsData from './exampleData/prodDetails.json';
 import prodStylesData from './exampleData/prodStyles.json';
+import currentProduct from './exampleData/currentProduct.json';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      show: false,
+      modalInfo: "",
+      modalData: [],
       mainProdId: 5,
+      currentProduct: currentProduct,
       relatedProdIds: [],
       prodDetails: prodDetailsData,
       prodStyles: prodStylesData,
@@ -21,6 +28,7 @@ class App extends React.Component {
     this.productStylesArr = [];
     this.productDetailsArr = [];
     this.products = [];
+    this.toggelModel = this.toggelModel.bind(this);
   }
 
   componentDidMount() {
@@ -60,8 +68,19 @@ class App extends React.Component {
     this.setState({ allProducts: this.products });
   }
 
+  toggelModel(info = '') {
+    this.setState({
+      show: !this.state.show,
+      modalInfo: info,
+    });
+  }
+
+  // closeModal(e) {
+  //   this.setState({show: false})
+  // }
+
   render() {
-    const { prodDetails, prodStyles, allProducts } = this.state;
+    const { allProducts } = this.state;
     // console.log(allProducts)
     const settings = {
       dots: true,
@@ -98,18 +117,31 @@ class App extends React.Component {
       ],
     };
     return (
-      <div id="rpCarousel">
-        <h4>Related Products 2</h4>
-        <Slider {...settings}>
-          { allProducts.map((product) => (
-            <Card
-              id={allProducts.idx}
-              product={product}
-              key={allProducts.idx}
-            />
-          ))}
-        </Slider>
-      </div>
+      <>
+        <div className="model">
+          <Modal
+            displayModal={this.state.show}
+            closeModal={this.toggelModel}
+            modalInfo={this.state.modalInfo}
+          />
+        </div>
+        <div id="rpCarousel">
+          <h4>Related Products 2</h4>
+          <Slider {...settings}>
+            { allProducts.map((product) => (
+              <Card
+                product={product}
+                key={allProducts.idx}
+                openModal={this.toggelModel}
+              />
+            ))}
+          </Slider>
+        </div>
+        <div id="myOutfits">
+          <h4>My Outfits</h4>
+          <MyOutfits />
+        </div>
+      </>
     );
   }
 }
@@ -117,12 +149,3 @@ class App extends React.Component {
 export default App;
 
 ReactDOM.render(<App />, document.getElementById('related'));
-
-// <div id="RelatedProducts">
-//           <h4>Related Products 1</h4>
-//           <RelatedProducts details={prodDetails} styles={prodStyles} />
-//         </div>
-//         <div id="myOutfits">
-//           <h4>My Outfits</h4>
-//           <MyOutfits />
-// </div>

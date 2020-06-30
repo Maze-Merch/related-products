@@ -1,3 +1,50 @@
+#rpCarousel {
+  margin-bottom: 35px;
+}
+#myOutfits {
+  /* position: relative; */
+}
+/* SETUP ICONS */
+.icon::before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+/* defining the right font-family/font-face for each style */
+.icon-solid::before,
+.icon-regular::before,
+.icon-light::before {
+  font-family: "Font Awesome 5 Free";
+}
+
+.icon-brand::before {
+  font-family: "Font Awesome 5 Brands";
+}
+/* defining the right font-family/font-face for each style */
+.icon-solid::before,
+.icon-regular::before,
+.icon-light::before {
+  font-family: "Font Awesome 5 Free";
+}
+
+.icon-brand::before {
+  font-family: "Font Awesome 5 Brands";
+}
+
+/* defining the right weight for each style */
+.icon-solid::before {
+  font-weight: 900;
+}
+
+.icon-regular::before {
+  font-weight: 400;
+}
+
 .rp-container {
   border: 1px solid rgba(0,0,0,.125);
   /* max-height: 312px; */
@@ -9,7 +56,7 @@
   border: 1px solid rgba(0,0,0,.125);
   min-width: 147px;
   /* max-width: 240px; */
-  min-height: 310px;
+  min-height: 325px;
   overflow: hidden;
   /* max-height: 310px; */
   /* flex: 1; */
@@ -26,23 +73,25 @@
   align-items: center;
   justify-content: center;*/
   /* position: absolute; */
-  height:180px;
+  height:200px;
   /* width:240px; */
   overflow: hidden;
 }
 .rp-card-image-box img {
   /* width: 350px;
   height: auto; */
+  min-height: 200px;
   width: 100%;
 }
 .rp-card-body {
-  cursor: pointer;
+  /* cursor: pointer; */
   position: absolute;
-  top:185px;
+  top:205px;
   padding-left: 5px;
 }
 .rp-card-category {
   /* margin: 5px 0px; */
+  font-weight: 500;
 }
 .rp-card-category, p, .rp-card-price {
   font-size: .75rem;
@@ -50,6 +99,9 @@
 .rp-card-body h5 {
   font-size: 1rem;
   /* margin-bottom: 0px; */
+}
+p.rp-card-text {
+  margin-bottom: 5px;
 }
 .rp-favorite {
   position: absolute;
@@ -59,23 +111,37 @@
   top: 5px;
   right: 5px;
   padding: 5px;
-  color: hsla(54, 83%, 55%, 0.75);
+  /* color: hsla(54, 83%, 55%, 0.75); */
   z-index: 1000;
   cursor: pointer;
+  /* background-color: #fff; */
+  /* content: "\f005"; */
+  font-size: 20px;
 }
+.star::before{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f005";
+  color: #fff;
 
-.rp-favorite svg:hover {
-  fill: hsla(54, 83%, 55%, 1.00);
 }
-.rp-favorite svg {
+.rp-favorite i:hover::before {
+  color: hsla(54, 83%, 55%, 1.00);
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  /* font-size: 25px; */
+  content: "\f005";
+}
+.rp-favorite i {
   position: absolute;
-  float: left;
+  /* float: left; */
+  content: "\f005";
   top: 0;
-  left: 3px;
+  left: 0px;
 }
 /* SLICK CAROUSEL THEME */
 
-@charset 'UTF-8';
+
 .slick-dots, .slick-next, .slick-prev {
   position: absolute;
   display: block;
@@ -91,7 +157,7 @@
 .slick-loading .slick-list {
   background: url(ajax-loader.gif) center center no-repeat #fff
 }
-
+@charset 'UTF-8';
 /* @font-face {
   font-family: slick;
   font-weight: 400;
@@ -223,8 +289,10 @@
   width: 20px;
   height: 20px;
   content: "\f111";
-  font: 14px/1 'FontAwesome';
-  font-weight: 700;
+  /* font: 14px/1 'FontAwesome'; */
+  font-family: "Font Awesome 5 Free";
+  font-size: 14px;
+  font-weight: 400;
   text-align: center;
   opacity: .25;
   color: #7e7e7e
@@ -232,5 +300,47 @@
 
 .slick-dots li.slick-active button:before {
   opacity: .75;
-  /* color: #7e7e7e */
+  /* color: #7e7e7e; */
+  font-family: "Font Awesome 5 Free";
+  font-size: 14px;
+  font-weight: 900;
 }
+
+/* MODAL */
+/* Background effect. It covers the entire site */
+.modal {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
+  z-index: 1; /* Overlay effect: positioned over other containers */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  position: fixed; /* Fix position on the top-left corner*/
+  top: 0;
+  left: 0;
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 80px; /* Location of the content container */
+}
+/* Modal content */
+.modal-content {
+  background-color: white;
+  width: 70%; /* Width in proportion to its parent container*/
+  max-width: 640px; /* Max width where it stops expanding */
+  height: 70%; /* Height in proportion to its parent container */
+  margin: auto; /* Auto margin according to the element width */
+  padding: 10px;
+  border: 1px solid black;
+}
+/* Close button */
+.close {
+ color: #080808;
+ float: right; /* Positioned to the right of the parent container whichever size it is */
+ font-size: 40px;
+ font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* END - MODAL */
