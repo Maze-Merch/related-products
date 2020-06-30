@@ -32,7 +32,7 @@ class App extends React.Component {
     this.toggelModel = this.toggelModel.bind(this);
     this.handleStarClick = this.handleStarClick.bind(this);
     this.handleAddToOutfitClick = this.handleAddToOutfitClick.bind(this);
-    this.createCompProductFeatArr = this.createCompProductFeatArr.bind(this);
+    // this.createCompProductFeatArr = this.createCompProductFeatArr.bind(this);
     // this.createCurrProdFeatArr = this.createCurrProdFeatArr.bind(this);
   }
 
@@ -44,6 +44,7 @@ class App extends React.Component {
 
   componentDidUpdate() {
     // console.log ('State didUpdate - All Products', this.state);
+    // console.log('clickedProdFeat', this.state.clickedProdFeat);
   }
 
   buildProductData() {
@@ -74,23 +75,10 @@ class App extends React.Component {
     this.setState({ allProducts: this.products });
   }
 
-  createCompProductFeatArr(id) {
-    const { allProducts } = this.state;
-    console.log('id', id);
-    console.log('all prod  length =', allProducts.length);
-    for (let i = 0; allProducts.length; i += 1) {
-      // console.log('all prod  i =', allProducts[i].idx);
-      // let testId = allProducts[0].idx;
-      if (0 === id) {
-        this.setState({ clickedProdFeat: allProducts[i].features });
-      }
-    }
-  }
-
   handleStarClick(e) {
+    const { allProducts } = this.state;
     this.toggelModel();
-    console.log('TARGET ID=', e.target.dataset.id);
-    this.createCompProductFeatArr(e.target.dataset.id);
+    this.setState({ clickedProdFeat: allProducts[e.target.dataset.id].features });
   }
 
   handleAddToOutfitClick(e) {
@@ -154,7 +142,6 @@ class App extends React.Component {
             closeModal={this.toggelModel}
             currentProd={currentProd.features}
             compProd={clickedProdFeat}
-            allProd={allProducts}
           />
         </div>
         <div id="rpCarousel">

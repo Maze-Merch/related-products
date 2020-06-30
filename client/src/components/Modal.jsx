@@ -1,25 +1,9 @@
 import React from 'react';
 import ModalCompareTable from './ModalCompareTable';
 
-const Modal = ({displayModal, closeModal, currentProd, allProd}) => {
-// console.log('displayModal', displayModal);
-
-  // function getTableData(currentProd, allProd) {
-    // I = objects with arrays of features
-    // O = Checkmarks on each side with value of feature in the middle
-    // C = None
-    // E = Different length arrays
-    // store data in array [yes, product details, yes]
-      // mainProdFeatures
-      // compProdFeatures - get id from clicked start
-        // if allProd.idx === clicked id
-          // first product
-  //   for(let i = 0: i < currentProd.features.length; i += 1){
-  //     for(let j = 0; j < allProd.length; j += 1){
-  //       if(currentProd.id === allProd)
-  //     }
-  //   }
-  // }
+const Modal = ({displayModal, closeModal, currentProd, compProd}) => {
+console.log('compProd', compProd);
+console.log('currentProd', currentProd);
 
   function displayInfo() {
     return (
