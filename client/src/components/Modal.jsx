@@ -6,7 +6,7 @@ const Modal = ({displayModal, closeModal, modalInfo}) => {
   function displayInfo() {
     return (
       <div className="modal-container">
-        <p>Modal Text</p>
+        <p>COMPARING</p>
       </div>
     );
   }

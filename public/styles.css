@@ -25,17 +25,6 @@
 .icon-brand::before {
   font-family: "Font Awesome 5 Brands";
 }
-/* defining the right font-family/font-face for each style */
-.icon-solid::before,
-.icon-regular::before,
-.icon-light::before {
-  font-family: "Font Awesome 5 Free";
-}
-
-.icon-brand::before {
-  font-family: "Font Awesome 5 Brands";
-}
-
 /* defining the right weight for each style */
 .icon-solid::before {
   font-weight: 900;
@@ -46,8 +35,7 @@
 }
 
 .rp-container {
-  border: 1px solid rgba(0,0,0,.125);
-  /* max-height: 312px; */
+  /* border: 1px solid rgba(0,0,0,.125); */
   overflow: hidden;
 }
 
@@ -65,6 +53,26 @@
 }
 .rp-card:hover {
   background-color: hsla(216, 47%, 87%, 0.20);
+}
+.outfit-card {
+  width: 273px;
+  text-align: center;
+  color: rgba(0,0,0,.5);
+}
+.outfit-card h3 {
+  /* line-height: 310px; */
+  margin-top:100px;
+
+}
+.outfit-card .plus::before {
+  font-size: 40px;
+  content: "\f067";
+  vertical-align: middle;
+
+}
+.outfit-card .plus:hover::before {
+  cursor: pointer;
+  color: rgba(0, 128, 0, 0.5);
 }
 
 .rp-card-image-box {

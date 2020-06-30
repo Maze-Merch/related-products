@@ -75,10 +75,6 @@ class App extends React.Component {
     });
   }
 
-  // closeModal(e) {
-  //   this.setState({show: false})
-  // }
-
   render() {
     const { allProducts } = this.state;
     // console.log(allProducts)
@@ -126,7 +122,7 @@ class App extends React.Component {
           />
         </div>
         <div id="rpCarousel">
-          <h4>Related Products 2</h4>
+          <h4>Related Products</h4>
           <Slider {...settings}>
             { allProducts.map((product) => (
               <Card
