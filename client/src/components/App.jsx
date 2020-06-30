@@ -14,11 +14,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       show: false,
-      modalInfo: "",
-      modalData: [],
-      clickedProdId: 0,
-      clickedProd: {},
+      clickedProdFeat: [],
+      mainProdFeat: [],
       mainProdId: 5,
+      myOutfitProdId: 0,
       currentProd: currentProduct,
       relatedProdIds: [],
       prodDetails: prodDetailsData,
@@ -32,6 +31,9 @@ class App extends React.Component {
     this.products = [];
     this.toggelModel = this.toggelModel.bind(this);
     this.handleStarClick = this.handleStarClick.bind(this);
+    this.handleAddToOutfitClick = this.handleAddToOutfitClick.bind(this);
+    this.createCompProductFeatArr = this.createCompProductFeatArr.bind(this);
+    // this.createCurrProdFeatArr = this.createCurrProdFeatArr.bind(this);
   }
 
   componentDidMount() {
@@ -72,23 +74,39 @@ class App extends React.Component {
     this.setState({ allProducts: this.products });
   }
 
+  createCompProductFeatArr(id) {
+    const { allProducts } = this.state;
+    console.log('id', id);
+    console.log('all prod  length =', allProducts.length);
+    for (let i = 0; allProducts.length; i += 1) {
+      // console.log('all prod  i =', allProducts[i].idx);
+      // let testId = allProducts[0].idx;
+      if (0 === id) {
+        this.setState({ clickedProdFeat: allProducts[i].features });
+      }
+    }
+  }
+
   handleStarClick(e) {
     this.toggelModel();
     console.log('TARGET ID=', e.target.dataset.id);
+    this.createCompProductFeatArr(e.target.dataset.id);
   }
 
   handleAddToOutfitClick(e) {
     console.log('TARGET ID=', e.target.dataset.id);
+    this.setState({ myOutfitProdId: e.target.dataset.id });
   }
 
   toggelModel() {
+    const { show } = this.state;
     this.setState({
-      show: !this.state.show,
+      show: !show,
     });
   }
 
   render() {
-    const { allProducts } = this.state;
+    const { allProducts, show, currentProd, clickedProdFeat, mainProdId } = this.state;
     // console.log(allProducts)
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
@@ -132,11 +150,11 @@ class App extends React.Component {
       <>
         <div className="model">
           <Modal
-            displayModal={this.state.show}
+            displayModal={show}
             closeModal={this.toggelModel}
-            modalInfo={this.state.modalInfo}
-            currentProd={this.state.currentProd}
-            allProd={this.state.allProducts}
+            currentProd={currentProd.features}
+            compProd={clickedProdFeat}
+            allProd={allProducts}
           />
         </div>
         <div id="rpCarousel">
@@ -153,7 +171,7 @@ class App extends React.Component {
         </div>
         <div id="myOutfits">
           <h4>My Outfits</h4>
-          <MyOutfits mainProdId={this.state.mainProdId} />
+          <MyOutfits mainProdId={mainProdId} click={this.handleAddToOutfitClick} />
         </div>
       </>
     );
