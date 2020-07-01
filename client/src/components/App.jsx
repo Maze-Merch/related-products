@@ -1,23 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
-import Slider from 'react-slick';
-import Modal from './Modal';
 import MyOutfits from './MyOutfits';
-import Card from './Card';
 import prodDetailsData from './exampleData/prodDetails.json';
 import prodStylesData from './exampleData/prodStyles.json';
 import currentProduct from './exampleData/currentProduct.json';
+import Carousel from './Carousel';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
-      clickedProdFeat: [],
       mainProdFeat: [],
       mainProdId: 5,
-      myOutfitProdId: 0,
       currentProd: currentProduct,
       relatedProdIds: [],
       prodDetails: prodDetailsData,
@@ -29,11 +24,6 @@ class App extends React.Component {
     this.productStylesArr = [];
     this.productDetailsArr = [];
     this.products = [];
-    this.toggelModel = this.toggelModel.bind(this);
-    this.handleStarClick = this.handleStarClick.bind(this);
-    this.handleAddToOutfitClick = this.handleAddToOutfitClick.bind(this);
-    // this.createCompProductFeatArr = this.createCompProductFeatArr.bind(this);
-    // this.createCurrProdFeatArr = this.createCurrProdFeatArr.bind(this);
   }
 
   componentDidMount() {
@@ -75,96 +65,20 @@ class App extends React.Component {
     this.setState({ allProducts: this.products });
   }
 
-  handleStarClick(e) {
-    const { allProducts } = this.state;
-    this.toggelModel();
-    this.setState({ clickedProdFeat: allProducts[e.target.dataset.id].features });
-  }
-
-  handleAddToOutfitClick(e) {
-    console.log('TARGET ID=', e.target.dataset.id);
-    this.setState({ myOutfitProdId: e.target.dataset.id });
-  }
-
-  toggelModel() {
-    const { show } = this.state;
-    this.setState({
-      show: !show,
-    });
-  }
-
   render() {
-    const { allProducts, show, currentProd, clickedProdFeat, mainProdId } = this.state;
-    // console.log(allProducts)
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    });
-
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      initialSlide: 0,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    };
+    const { allProducts, currentProd, mainProdId } = this.state;
+    // console.log(allProducts);
     return (
       <>
-        <div className="model">
-          <Modal
-            displayModal={show}
-            closeModal={this.toggelModel}
-            currentProd={currentProd.features}
-            compProd={clickedProdFeat}
-          />
-        </div>
         <div id="rpCarousel">
-          <h4>Related Products</h4>
-          <Slider {...settings}>
-            { allProducts.map((product) => (
-              <Card
-                product={product}
-                key={allProducts.idx}
-                openModal={this.handleStarClick}
-              />
-            ))}
-          </Slider>
+          <Carousel allProducts={allProducts} currProd={currentProd} />
         </div>
         <div id="myOutfits">
-          <h4>My Outfits</h4>
-          <MyOutfits mainProdId={mainProdId} click={this.handleAddToOutfitClick} />
+          <MyOutfits mainProdId={mainProdId} />
         </div>
       </>
     );
   }
 }
-
 export default App;
-
 ReactDOM.render(<App />, document.getElementById('related'));

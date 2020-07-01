@@ -1,15 +1,26 @@
 import React from 'react';
 import ModalCompareTable from './ModalCompareTable';
 
-const Modal = ({displayModal, closeModal, currentProd, compProd}) => {
-console.log('compProd', compProd);
-console.log('currentProd', currentProd);
+const Modal = ({displayModal, closeModal, currentProd, compProd, allProd}) => {
+// console.log('compProd', compProd);
+// console.log('currentProd', currentProd);
 
   function displayInfo() {
     return (
       <div className="modal-container">
         <h4>COMPARING</h4>
-        <ModalCompareTable />
+        <table className="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Product 1</th>
+              <th scope="col">Product Info</th>
+              <th scope="col">Product 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ModalCompareTable currentProd={currentProd} compProd={compProd} />
+          </tbody>
+        </table>
       </div>
     );
   }

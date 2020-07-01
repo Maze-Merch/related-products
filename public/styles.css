@@ -135,7 +135,6 @@ p.rp-card-text {
   font-weight: 400;
   content: "\f005";
   color: #fff;
-
 }
 .rp-favorite i:hover::before {
   color: hsla(54, 83%, 55%, 1.00);
