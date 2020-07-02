@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import Card from './card/Card';
 import Modal from './Modal';
+// import MyOutfits from './MyOutfits';
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -40,7 +41,6 @@ class Carousel extends React.Component {
     let count = 0;
     for (let x = 0; x <= details.length - 1; x += 1) {
       for (let i = 0; i <= styles[x].results.length - 1; i += 1) {
-
         const prodInfo = {
           idx: count,
           id: details[x].id,
@@ -113,12 +113,12 @@ class Carousel extends React.Component {
       ],
     };
     const {
-      allProducts, clickedProd, currentProdFeat, show,
+      allProducts, clickedProd, currentProdFeat, show, currentProd,
     } = this.state;
-    console.log(
-      // 'Carousel Props', this.props.currProd,
-      'Carousel State', this.state,
-    );
+    // console.log(
+    //   'Carousel Props', this.props.currProd,
+    //   'Carousel State', this.state,
+    // );
     return (
       <>
         <div className="modal-container">
@@ -129,7 +129,7 @@ class Carousel extends React.Component {
             compProd={clickedProd}
           />
         </div>
-        <div id="rpCarousel">
+        <div id="rp-carousel-container">
           <Slider {...settings}>
             { allProducts.map((product, i) => (
               <Card

@@ -89,12 +89,12 @@ class App extends React.Component {
 
   render() {
     const {
-      currentProd, mainProdId, relatedProdIds, prodDetails, prodStyles,
+      currentProd, relatedProdIds, prodDetails, prodStyles,
     } = this.state;
 
     return (
       <>
-        <div id="rpCarousel">
+        <div id="rp-carousel">
           <h4>Related Products</h4>
           {
             relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
@@ -102,7 +102,7 @@ class App extends React.Component {
           }
         </div>
         <div id="myOutfits">
-          <MyOutfits mainProdId={mainProdId} />
+          <MyOutfits det={currentProd} style={prodStyles} />
         </div>
       </>
     );

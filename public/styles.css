@@ -12,6 +12,9 @@
 }
 #myOutfits {
   /* position: relative; */
+  margin-top: 35px;
+  height: 325px;
+
 }
 /* SETUP ICONS */
 .icon::before {
