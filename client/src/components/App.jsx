@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 import MyOutfits from './MyOutfits';
-import currentProduct from './exampleData/currentProduct.json';
+// import currentProduct from './exampleData/currentProduct.json';
 import Carousel from './Carousel';
 
 class App extends React.Component {
@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       mainProdId: 5,
-      currentProd: currentProduct,
+      currentProd: {},
       relatedProdIds: [],
       prodDetails: [],
       prodStyles: [],
@@ -24,6 +24,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getCurrentProduct();
     this.dataFetcher();
   }
 
@@ -64,6 +65,13 @@ class App extends React.Component {
       stylesPromises.push(stylePromise);
     }
     return Promise.all(stylesPromises);
+  }
+
+  async getCurrentProduct() {
+    const { mainProdId } = this.state;
+    const response = await fetch(`http://52.26.193.201:3000/products/${mainProdId}`);
+    const currProdDet = await response.json();
+    this.setState({ currentProd: currProdDet });
   }
 
   async dataFetcher() {

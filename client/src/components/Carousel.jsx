@@ -22,13 +22,6 @@ class Carousel extends React.Component {
     this.buildCardData();
   }
 
-  componentDidUpdate() {
-    const { allProducts } = this.state;
-    // if (allProducts !== this.cardData) {
-    //   this.setState({ allProducts: this.cardData });
-    // }
-  }
-
   buildCardData() {
     const { det, style } = this.props;
     const details = det;
@@ -111,7 +104,7 @@ class Carousel extends React.Component {
       ],
     };
     const { allProducts } = this.state;
-    // console.log(this.props);
+    console.log(this.props);
     return (
       <>
         <div className="modal-container">
