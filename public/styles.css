@@ -4,6 +4,12 @@
 #rpCarousel {
   margin-bottom: 35px;
 }
+.rp-loading {
+  /* height: 325px;
+  width: 100%; */
+  text-align: center;
+  /* vertical-align: middle; */
+}
 #myOutfits {
   /* position: relative; */
 }
