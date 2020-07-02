@@ -111,7 +111,7 @@ class Carousel extends React.Component {
       ],
     };
     const { allProducts } = this.state;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <>
         <div className="modal-container">

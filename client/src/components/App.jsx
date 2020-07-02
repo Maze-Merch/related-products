@@ -15,7 +15,6 @@ class App extends React.Component {
       relatedProdIds: [],
       prodDetails: [],
       prodStyles: [],
-      // allProducts: [],
     };
     this.relatedIdsArr = [];
     this.productDetailsArr = [];
@@ -31,6 +30,7 @@ class App extends React.Component {
   getRelIds() {
     const { mainProdId } = this.state;
     let relIds = [];
+
     return fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
       .then((res) => res.json())
       .then((data) => {
@@ -44,6 +44,7 @@ class App extends React.Component {
 
   getDetails(relIds) {
     const detailsPromises = [];
+
     for (let i = 0; i <= relIds.length - 1; i += 1) {
       const id = relIds[i];
       const detailPromise = fetch(`http://52.26.193.201:3000/products/${id}`)
@@ -55,6 +56,7 @@ class App extends React.Component {
 
   getStyles(relIds) {
     const stylesPromises = [];
+
     for (let i = 0; i <= relIds.length - 1; i += 1) {
       const id = relIds[i];
       const stylePromise = fetch(`http://52.26.193.201:3000/products/${id}/styles`)
@@ -67,21 +69,20 @@ class App extends React.Component {
   async dataFetcher() {
     try {
       const relatedIds = await this.getRelIds();
-      // console.log('Datafetcher ids= ', relatedIds);
       this.productDetailsArr = await this.getDetails(relatedIds);
-      // console.log('Datafetcher details= ', this.productDetailsArr);
       this.productStylesArr = await this.getStyles(relatedIds);
-      // console.log('Datafetcher styles= ', styles);
     } catch (err) {
       console.log(err);
     }
-    console.log('Datafetcher details= ', this.productDetailsArr);
+
     this.setState({ relatedProdIds: this.relatedIds, prodDetails: this.productDetailsArr, prodStyles: this.productStylesArr });
   }
 
   render() {
-    const { currentProd, mainProdId, relatedProdIds, prodDetails, prodStyles } = this.state;
-    // console.log(allProducts);
+    const {
+      currentProd, mainProdId, relatedProdIds, prodDetails, prodStyles,
+    } = this.state;
+
     return (
       <>
         <div id="rpCarousel">
