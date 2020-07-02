@@ -8,7 +8,7 @@ const Card = ({product, openModal}) => {
   // console.log('Card Product arr =', product);
   return (
     <div className="rp-card">
-      <CardFavorite id={product.id} openModal={openModal} />
+      <CardFavorite id={product.idx} openModal={openModal} />
       <div className="rp-card-image-box">
         <CardImage
           id={product.id}

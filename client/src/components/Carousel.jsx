@@ -6,10 +6,11 @@ import Modal from './Modal';
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       allProducts: [],
-      clickedProdFeat: [],
-      mainProdFeat: [],
+      clickedProd: {},
+      currentProd: {},
       show: false,
     };
     this.cardData = [];
@@ -20,6 +21,14 @@ class Carousel extends React.Component {
 
   componentDidMount() {
     this.buildCardData();
+  }
+
+  componentDidUpdate() {
+    const { currentProd } = this.state;
+    const { currProd } = this.props;
+    if (currentProd !== currProd) {
+      this.setState({ currentProd: currProd });
+    }
   }
 
   buildCardData() {
@@ -58,7 +67,7 @@ class Carousel extends React.Component {
   handleStarClick(e) {
     const { allProducts } = this.state;
     this.toggleModal();
-    this.setState({ clickedProdFeat: allProducts[e.target.dataset.id].features });
+    this.setState({ clickedProd: allProducts[e.target.dataset.id] });
   }
 
   toggleModal() {
@@ -103,24 +112,30 @@ class Carousel extends React.Component {
         },
       ],
     };
-    const { allProducts } = this.state;
-    console.log(this.props);
+    const {
+      allProducts, clickedProd, currentProdFeat, show,
+    } = this.state;
+    console.log(
+      // 'Carousel Props', this.props.currProd,
+      'Carousel State', this.state,
+    );
     return (
       <>
         <div className="modal-container">
           <Modal
-            displayModal={this.state.show}
+            displayModal={show}
             closeModal={this.toggleModal}
-            currentProd={this.props.currProd.features}
-            compProd={this.state.clickedProdFeat}
+            currentProd={currentProdFeat}
+            compProd={clickedProd}
           />
         </div>
         <div id="rpCarousel">
           <Slider {...settings}>
-            { allProducts.map((product) => (
+            { allProducts.map((product, i) => (
               <Card
                 product={product}
                 openModal={this.handleStarClick}
+                key={i}
               />
             ))}
           </Slider>

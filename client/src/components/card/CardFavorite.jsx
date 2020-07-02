@@ -8,9 +8,6 @@ const CardFavorite = (props) => {
         data-id={props.id}
         className="icon star"
         onClick={props.openModal}
-        data-toggle="tooltip"
-        data-placement="top"
-        title="Compare This Product"
         role="button"
         />
     </div>

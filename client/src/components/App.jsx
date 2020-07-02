@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 import MyOutfits from './MyOutfits';
-// import currentProduct from './exampleData/currentProduct.json';
 import Carousel from './Carousel';
 
 class App extends React.Component {
@@ -16,7 +15,6 @@ class App extends React.Component {
       prodDetails: [],
       prodStyles: [],
     };
-    this.relatedIdsArr = [];
     this.productDetailsArr = [];
     this.productStylesArr = [];
     this.getDetails = this.getDetails.bind(this);
@@ -37,7 +35,6 @@ class App extends React.Component {
       .then((data) => {
         relIds = [...new Set(data)];
         relIds.sort();
-        console.log('getRelIds =', relIds);
         return relIds;
       })
       .catch((err) => console.log('Error getting related prod ids', err));
@@ -83,7 +80,11 @@ class App extends React.Component {
       console.log(err);
     }
 
-    this.setState({ relatedProdIds: this.relatedIds, prodDetails: this.productDetailsArr, prodStyles: this.productStylesArr });
+    this.setState({
+      relatedProdIds: this.relatedIds,
+      prodDetails: this.productDetailsArr,
+      prodStyles: this.productStylesArr,
+    });
   }
 
   render() {
