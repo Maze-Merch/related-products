@@ -7,17 +7,65 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allProducts: [],
       clickedProdFeat: [],
+      mainProdFeat: [],
       show: false,
     };
+    this.cardData = [];
     this.handleStarClick = this.handleStarClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.buildCardData = this.buildCardData.bind(this);
+  }
+
+  componentDidMount() {
+    this.buildCardData();
+  }
+
+  componentDidUpdate() {
+    const { allProducts } = this.state;
+    // if (allProducts !== this.cardData) {
+    //   this.setState({ allProducts: this.cardData });
+    // }
+  }
+
+  buildCardData() {
+    const { det, style } = this.props;
+    const details = det;
+    const styles = style;
+    // console.log('Details from props', details);
+    // const cardData = [];
+    let count = 0;
+    for (let x = 0; x <= details.length - 1; x += 1) {
+      for (let i = 0; i <= styles[x].results.length - 1; i += 1) {
+
+        const prodInfo = {
+          idx: count,
+          id: details[x].id,
+          name: details[x].name,
+          slogan: details[x].slogan,
+          description: details[x].description,
+          category: details[x].category,
+          default_price: details[x].default_price,
+          styleId: styles[x].results[i].style_id,
+          styleName: styles[x].results[i].name,
+          origPrice: styles[x].results[i].original_price,
+          salePrice: styles[x].results[i].sale_price,
+          thumb: styles[x].results[i].photos[0].thumbnail_url,
+          img: styles[x].results[i].photos[0].url,
+          features: details[x].features,
+        };
+        this.cardData.push(prodInfo);
+        count += 1;
+      }
+    }
+    this.setState({ allProducts: this.cardData });
   }
 
   handleStarClick(e) {
-    // const { allProducts } = this.state;
+    const { allProducts } = this.state;
     this.toggleModal();
-    this.setState({ clickedProdFeat: this.props.allProducts[e.target.dataset.id].features });
+    this.setState({ clickedProdFeat: allProducts[e.target.dataset.id].features });
   }
 
   toggleModal() {
@@ -62,6 +110,8 @@ class Carousel extends React.Component {
         },
       ],
     };
+    const { allProducts } = this.state;
+    console.log(this.props);
     return (
       <>
         <div className="modal-container">
@@ -73,9 +123,8 @@ class Carousel extends React.Component {
           />
         </div>
         <div id="rpCarousel">
-          <h4>Related Products</h4>
           <Slider {...settings}>
-            { this.props.allProducts.map((product) => (
+            { allProducts.map((product) => (
               <Card
                 product={product}
                 openModal={this.handleStarClick}

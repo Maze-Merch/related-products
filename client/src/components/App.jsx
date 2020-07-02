@@ -1,9 +1,10 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import regeneratorRuntime from "regenerator-runtime";
 import MyOutfits from './MyOutfits';
-import prodDetailsData from './exampleData/prodDetails.json';
-import prodStylesData from './exampleData/prodStyles.json';
+// import prodDetailsData from './exampleData/prodDetails.json';
+// import prodStylesData from './exampleData/prodStyles.json';
 import currentProduct from './exampleData/currentProduct.json';
 import Carousel from './Carousel';
 
@@ -11,67 +12,88 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainProdFeat: [],
       mainProdId: 5,
       currentProd: currentProduct,
       relatedProdIds: [],
-      prodDetails: prodDetailsData,
-      prodStyles: prodStylesData,
-      allProducts: [],
-      product: {},
+      prodDetails: [],
+      prodStyles: [],
+      // allProducts: [],
     };
-    this.relatedIdArr = [];
-    this.productStylesArr = [];
+    this.relatedIdsArr = [];
     this.productDetailsArr = [];
-    this.products = [];
+    this.productStylesArr = [];
+    this.getDetails = this.getDetails.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
 
   componentDidMount() {
-    // fetch moved to DataFetcher.jsx
-    this.buildProductData();
-    this.setState({ product: this.products[0] });
+    // this.getRelIds();
+    this.dataFetcher();
+    // this.setState({ prodDetails: this.productDetailsArr, prodStyles: this.productStylesArr });
   }
 
-  componentDidUpdate() {
-    // console.log ('State didUpdate - All Products', this.state);
-    // console.log('clickedProdFeat', this.state.clickedProdFeat);
+  getRelIds() {
+    const { mainProdId } = this.state;
+    let relIds = [];
+    return fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
+      .then((res) => res.json())
+      .then((data) => {
+        relIds = [...new Set(data)];
+        relIds.sort();
+        console.log('getRelIds =', relIds);
+        return relIds;
+      })
+      .catch((err) => console.log('Error getting related prod ids', err));
   }
 
-  buildProductData() {
-    const { prodDetails, prodStyles } = this.state;
-    let count = 0;
-    for (let x = 0; x < prodDetails.length; x += 1) {
-      for (let i = 0; i < prodStyles[x].results.length; i += 1) {
-        const prodInfo = {
-          idx: count,
-          id: prodDetails[x].id,
-          name: prodDetails[x].name,
-          slogan: prodDetails[x].slogan,
-          description: prodDetails[x].description,
-          category: prodDetails[x].category,
-          default_price: prodDetails[x].default_price,
-          styleId: prodStyles[x].results[i].style_id,
-          styleName: prodStyles[x].results[i].name,
-          origPrice: prodStyles[x].results[i].original_price,
-          salePrice: prodStyles[x].results[i].sale_price,
-          thumb: prodStyles[x].results[i].photos[0].thumbnail_url,
-          img: prodStyles[x].results[i].photos[0].url,
-          features: prodDetails[x].features,
-        };
-        this.products.push(prodInfo);
-        count += 1;
-      }
+  getDetails(relIds) {
+    const detailsPromises = [];
+    for (let i = 0; i <= relIds.length - 1; i += 1) {
+      let id = relIds[i];
+      const detailPromise = fetch(`http://52.26.193.201:3000/products/${id}`)
+        .then((res) => res.json());
+      detailsPromises.push(detailPromise);
     }
-    this.setState({ allProducts: this.products });
+    return Promise.all(detailsPromises);
+  }
+
+  getStyles(relIds) {
+    const stylesPromises = [];
+    for (let i = 0; i <= relIds.length - 1; i += 1) {
+      let id = relIds[i];
+      const stylePromise = fetch(`http://52.26.193.201:3000/products/${id}/styles`)
+        .then((res) => res.json())
+      stylesPromises.push(stylePromise);
+    }
+    return Promise.all(stylesPromises);
+  }
+
+  async dataFetcher() {
+    try {
+      const relatedIds = await this.getRelIds();
+      // console.log('Datafetcher ids= ', relatedIds);
+      this.productDetailsArr = await this.getDetails(relatedIds);
+      // console.log('Datafetcher details= ', this.productDetailsArr);
+      this.productStylesArr = await this.getStyles(relatedIds);
+      // console.log('Datafetcher styles= ', styles);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log('Datafetcher details= ', this.productDetailsArr);
+    this.setState({ relatedProdIds: this.relatedIds, prodDetails: this.productDetailsArr, prodStyles: this.productStylesArr });
   }
 
   render() {
-    const { allProducts, currentProd, mainProdId } = this.state;
+    const { currentProd, mainProdId, relatedProdIds, prodDetails, prodStyles } = this.state;
     // console.log(allProducts);
     return (
       <>
         <div id="rpCarousel">
-          <Carousel allProducts={allProducts} currProd={currentProd} />
+          <h4>Related Products</h4>
+          {
+            relatedProdIds ? <div className="rp-loading fa fa-spinner fa-pulse fa-3x fa-fw"><span className="sr-only">Loading...</span></div>
+              : <Carousel currProd={currentProd} det={prodDetails} style={this.productStylesArr} />
+          }
         </div>
         <div id="myOutfits">
           <MyOutfits mainProdId={mainProdId} />
@@ -80,5 +102,7 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;
+
 ReactDOM.render(<App />, document.getElementById('related'));

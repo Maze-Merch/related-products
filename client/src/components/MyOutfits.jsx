@@ -7,6 +7,7 @@ class MyOutfits extends React.Component {
       myOutfitProdId: 0,
     };
     this.handleAddToOutfitClick = this.handleAddToOutfitClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleAddToOutfitClick(e) {
@@ -14,7 +15,12 @@ class MyOutfits extends React.Component {
     this.setState({ myOutfitProdId: e.target.dataset.id });
   }
 
+  handleKeyPress(e) {
+    this.setState({ myOutfitProdId: e.target.dataset.id });
+  }
+
   render() {
+    const { mainProdId } = this.props;
     return (
       <div className="rp-container">
         <h4>My Outfits</h4>
@@ -22,8 +28,12 @@ class MyOutfits extends React.Component {
           <h3>Add to Outfit</h3>
           <i
             className="icon icon-solid plus"
-            data-id={this.props.mainProdId}
+            data-id={mainProdId}
             onClick={this.handleAddToOutfitClick}
+            role="button"
+            onKeyPress={this.handleKeyPress}
+            tabIndex={0}
+            aria-label="Add to My Outfits"
           />
         </div>
       </div>

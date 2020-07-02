@@ -46,3 +46,17 @@ export default DataFetcher;
     //   })
     //   .catch((err) => console.log('Error getting related prod ids', err));
     // this.setState({ prodDetails: this.productDetailsArr, prodStyles: this.productStylesArr });
+
+    // getDetails(id) {
+  //   fetch(`http://52.26.193.201:3000/products/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => this.productDetailsArr.push(data))
+  //     .catch((err) => console.log('Error getting product details', err));
+  // }
+
+  // getStyles(id) {
+  //   fetch(`http://52.26.193.201:3000/products/${id}/styles`)
+  //     .then((res) => res.json())
+  //     .then((data) => this.productStylesArr.push(data.results))
+  //     .catch((err) => console.log('Error getting product styles', err));
+  // }
