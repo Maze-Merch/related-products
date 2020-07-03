@@ -8,6 +8,8 @@ class MyOutfits extends React.Component {
       allProducts: [],
       addToId: 0,
       myOutfits: [],
+      display: false,
+      cardType: 'outfit',
     };
     this.cardData = [];
     this.handleClick = this.handleClick.bind(this);
@@ -56,7 +58,7 @@ class MyOutfits extends React.Component {
 
   handleClick(e) {
     console.log('TARGET ID=', e.target.dataset.id);
-    this.setState({ addToId: e.target.dataset.id });
+    this.setState({ addToId: e.target.dataset.id, display: true});
   }
 
   handleKeyPress(e) {
@@ -68,7 +70,7 @@ class MyOutfits extends React.Component {
       'MO Props = ', this.props,
       'MO State = ', this.state,
     );
-    const { allProducts } = this.state;
+    const { allProducts, display, cardType } = this.state;
     const { det } = this.props;
     return (
       <>
@@ -86,11 +88,15 @@ class MyOutfits extends React.Component {
             />
           </div>
           { allProducts.map((product, i) => (
-            <Card
-              product={product}
-              openModal={this.handleStarClick}
-              key={i}
-            />
+            display
+              ?
+              <Card
+                product={product}
+                openModal={this.handleStarClick}
+                key={i}
+                type={cardType}
+              />
+              : null
           ))}
         </div>
       </>
