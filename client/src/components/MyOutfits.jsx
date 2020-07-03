@@ -12,7 +12,8 @@ class MyOutfits extends React.Component {
       cardType: 'outfit',
     };
     this.cardData = [];
-    this.handleClick = this.handleClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleCloseClick = this.handleCloseClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.buildCardData = this.buildCardData.bind(this);
   }
@@ -56,9 +57,14 @@ class MyOutfits extends React.Component {
     this.setState({ myOutfits: this.cardData });
   }
 
-  handleClick(e) {
+  handleAddClick(e) {
     console.log('TARGET ID=', e.target.dataset.id);
     this.setState({ addToId: e.target.dataset.id, display: true});
+  }
+
+  handleCloseClick(e) {
+    console.log('Close Click!');
+    this.setState({ display: false });
   }
 
   handleKeyPress(e) {
@@ -66,10 +72,10 @@ class MyOutfits extends React.Component {
   }
 
   render() {
-    console.log(
-      'MO Props = ', this.props,
-      'MO State = ', this.state,
-    );
+    // console.log(
+    //   'MO Props = ', this.props,
+    //   'MO State = ', this.state,
+    // );
     const { allProducts, display, cardType } = this.state;
     const { det } = this.props;
     return (
@@ -80,7 +86,7 @@ class MyOutfits extends React.Component {
             <i
               className="icon icon-solid plus"
               data-id={det.id}
-              onClick={this.handleClick}
+              onClick={this.handleAddClick}
               role="button"
               onKeyPress={this.handleKeyPress}
               tabIndex={0}
@@ -95,6 +101,7 @@ class MyOutfits extends React.Component {
                 openModal={this.handleStarClick}
                 key={i}
                 type={cardType}
+                close={this.handleCloseClick}
               />
               : null
           ))}

@@ -139,18 +139,31 @@ p.rp-card-text {
   /* content: "\f005"; */
   font-size: 20px;
 }
-.star::before{
+.rp-star::before{
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
   content: "\f005";
   color: #fff;
 }
-.rp-favorite i:hover::before {
+i.rp-star:hover::before {
   color: hsla(54, 83%, 55%, 1.00);
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   /* font-size: 25px; */
   content: "\f005";
+}
+.rp-close::before{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f057";
+  color: rgb(170, 3, 3);
+}
+i.rp-close:hover::before {
+  color: rgb(170, 3, 3);
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  /* font-size: 25px; */
+  content: "\f057";
 }
 .rp-favorite i {
   position: absolute;

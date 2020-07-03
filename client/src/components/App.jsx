@@ -103,20 +103,26 @@ class App extends React.Component {
 
     return (
       <>
-        <div id="rp-carousel">
-          <h4>Related Products</h4>
-          {
-            relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
-              : <Carousel currProd={currentProd} det={prodDetails} style={prodStyles} />
-          }
-        </div>
-        <div id="myOutfits">
-          <h4>My Outfits</h4>
-          {
-            relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
-              : <MyOutfits det={currentProd} style={currentProdStyle} />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="container">
+              <h4>Related Products</h4>
+              {
+                relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
+                  : <Carousel currProd={currentProd} det={prodDetails} style={prodStyles} />
+              }
+            </div>
+          </div>
+          <div className="row">
+            <div id="myOutfits" className="container">
+              <h4>My Outfits</h4>
+              {
+                relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
+                  : <MyOutfits det={currentProd} style={currentProdStyle} />
 
-          }
+              }
+            </div>
+          </div>
         </div>
       </>
     );

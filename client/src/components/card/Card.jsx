@@ -4,11 +4,11 @@ import CardImage from './CardImage';
 import CardBody from './CardBody';
 // import styles from './exampleData/prodStyles.json';
 
-const Card = ({product, openModal}) => {
-  // console.log('Card Product arr =', product);
+const Card = ({product, openModal, cardType, close}) => {
+  console.log('Card Product close =', close);
   return (
     <div className="rp-card">
-      <CardFavorite id={product.idx} openModal={openModal} />
+      <CardFavorite id={product.idx} openModal={openModal} cardType={cardType} close={close} />
       <div className="rp-card-image-box">
         <CardImage
           id={product.id}
