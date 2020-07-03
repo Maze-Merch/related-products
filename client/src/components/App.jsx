@@ -106,7 +106,7 @@ class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="container">
-              <h4>Related Products</h4>
+              <h4>You may also like:</h4>
               {
                 relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
                   : <Carousel currProd={currentProd} det={prodDetails} style={prodStyles} />
@@ -115,7 +115,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             <div id="myOutfits" className="container">
-              <h4>My Outfits</h4>
+              <h4>Create an outfit:</h4>
               {
                 relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
                   : <MyOutfits det={currentProd} style={currentProdStyle} />
