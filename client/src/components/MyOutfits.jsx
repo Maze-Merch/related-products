@@ -5,11 +5,27 @@ class MyOutfits extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allProducts: [],
       addToId: 0,
       myOutfits: [],
     };
+    this.cardData = [];
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.buildCardData = this.buildCardData.bind(this);
+  }
+
+  componentDidMount() {
+    this.buildCardData();
+  }
+
+  componentDidUpdate() {
+    const { allProducts } = this.state;
+    if (allProducts !== this.cardData) {
+      // console.log('here in update if');
+      this.setState({ allProducts: this.cardData });
+    }
+    // console.log('Did Update state = ', this.state)
   }
 
   buildCardData() {
@@ -17,31 +33,25 @@ class MyOutfits extends React.Component {
     const details = det;
     const styles = style;
     // console.log('Details from props', details);
-    // const cardData = [];
-    let count = 0;
-    for (let x = 0; x <= details.length - 1; x += 1) {
-      for (let i = 0; i <= styles[x].results.length - 1; i += 1) {
-        const prodInfo = {
-          idx: count,
-          id: details[x].id,
-          name: details[x].name,
-          slogan: details[x].slogan,
-          description: details[x].description,
-          category: details[x].category,
-          default_price: details[x].default_price,
-          styleId: styles[x].results[i].style_id,
-          styleName: styles[x].results[i].name,
-          origPrice: styles[x].results[i].original_price,
-          salePrice: styles[x].results[i].sale_price,
-          thumb: styles[x].results[i].photos[0].thumbnail_url,
-          img: styles[x].results[i].photos[0].url,
-          features: details[x].features,
-        };
-        this.cardData.push(prodInfo);
-        count += 1;
-      }
-    }
-    this.setState({ allProducts: this.cardData });
+    // let count = 0;
+    const prodInfo = {
+      idx: details.id,
+      id: details.id,
+      name: details.name,
+      slogan: details.slogan,
+      description: details.description,
+      category: details.category,
+      default_price: details.default_price,
+      styleId: styles.style_id,
+      styleName: styles.name,
+      origPrice: styles.original_price,
+      salePrice: styles.sale_price,
+      thumb: styles.photos[0].thumbnail_url,
+      img: styles.photos[0].url,
+    };
+
+    this.cardData.push(prodInfo);
+    this.setState({ myOutfits: this.cardData });
   }
 
   handleClick(e) {
@@ -56,28 +66,33 @@ class MyOutfits extends React.Component {
   render() {
     console.log(
       'MO Props = ', this.props,
+      'MO State = ', this.state,
     );
-    const { mainProdId } = this.props;
+    const { allProducts } = this.state;
+    const { det } = this.props;
     return (
       <>
-      <div className="rp-container">
-        <h4>My Outfits</h4>
-        <div className="rp-card outfit-card">
-          <h3>Add to Outfit</h3>
-          <i
-            className="icon icon-solid plus"
-            data-id={mainProdId}
-            onClick={this.handleClick}
-            role="button"
-            onKeyPress={this.handleKeyPress}
-            tabIndex={0}
-            aria-label="Add to My Outfits"
-          />
+        <div className="container row">
+          <div className="rp-card outfit-card">
+            <h3>Add to Outfit</h3>
+            <i
+              className="icon icon-solid plus"
+              data-id={det.id}
+              onClick={this.handleClick}
+              role="button"
+              onKeyPress={this.handleKeyPress}
+              tabIndex={0}
+              aria-label="Add to My Outfits"
+            />
+          </div>
+          { allProducts.map((product, i) => (
+            <Card
+              product={product}
+              openModal={this.handleStarClick}
+              key={i}
+            />
+          ))}
         </div>
-      </div>
-      <div id="addedOutfits">
-         <h4>Added Outfits</h4>
-      </div>
       </>
     );
   }

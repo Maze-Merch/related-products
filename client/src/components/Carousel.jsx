@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import Card from './card/Card';
 import Modal from './Modal';
-// import MyOutfits from './MyOutfits';
 
 class Carousel extends React.Component {
   constructor(props) {

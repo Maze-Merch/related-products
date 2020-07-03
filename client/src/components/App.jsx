@@ -9,8 +9,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainProdId: 5,
+      currProdId: 5,
       currentProd: {},
+      currentProdStyle: {},
       relatedProdIds: [],
       prodDetails: [],
       prodStyles: [],
@@ -23,14 +24,15 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCurrentProduct();
+    this.getCurrentStyle();
     this.dataFetcher();
   }
 
   getRelIds() {
-    const { mainProdId } = this.state;
+    const { currProdId } = this.state;
     let relIds = [];
 
-    return fetch(`http://52.26.193.201:3000/products/${mainProdId}/related`)
+    return fetch(`http://52.26.193.201:3000/products/${currProdId}/related`)
       .then((res) => res.json())
       .then((data) => {
         relIds = [...new Set(data)];
@@ -65,10 +67,17 @@ class App extends React.Component {
   }
 
   async getCurrentProduct() {
-    const { mainProdId } = this.state;
-    const response = await fetch(`http://52.26.193.201:3000/products/${mainProdId}`);
+    const { currProdId } = this.state;
+    const response = await fetch(`http://52.26.193.201:3000/products/${currProdId}`);
     const currProdDet = await response.json();
     this.setState({ currentProd: currProdDet });
+  }
+
+  async getCurrentStyle() {
+    const { currProdId } = this.state;
+    const response = await fetch(`http://52.26.193.201:3000/products/${currProdId}/styles`);
+    const currProdSty = await response.json();
+    this.setState({ currentProdStyle: currProdSty.results[0] });
   }
 
   async dataFetcher() {
@@ -89,7 +98,7 @@ class App extends React.Component {
 
   render() {
     const {
-      currentProd, relatedProdIds, prodDetails, prodStyles,
+      currentProd, currentProdStyle, relatedProdIds, prodDetails, prodStyles,
     } = this.state;
 
     return (
@@ -102,7 +111,12 @@ class App extends React.Component {
           }
         </div>
         <div id="myOutfits">
-          <MyOutfits det={currentProd} style={prodStyles} />
+          <h4>My Outfits</h4>
+          {
+            relatedProdIds ? <div className="fa fa-refresh fa-spin fa-3x fa-fw rp-loading"><span className="sr-only">Loading...</span></div>
+              : <MyOutfits det={currentProd} style={currentProdStyle} />
+
+          }
         </div>
       </>
     );
