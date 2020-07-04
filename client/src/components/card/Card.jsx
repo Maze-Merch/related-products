@@ -1,14 +1,32 @@
 import React from 'react';
-import CardFavorite from './CardFavorite';
+// import CardFavorite from './CardFavorite';
 import CardImage from './CardImage';
 import CardBody from './CardBody';
 // import styles from './exampleData/prodStyles.json';
 
 const Card = ({product, openModal, cardType, close}) => {
-  console.log('Card Product close =', close);
+  console.log('Card Product =', product);
   return (
     <div className="rp-card">
-      <CardFavorite id={product.idx} openModal={openModal} cardType={cardType} close={close} />
+      <div className="rp-favorite">
+        {cardType !== 'outfit'
+          ? (
+              <i
+              data-id={product.id}
+              className="icon rp-star"
+              onClick={openModal}
+              role="button"
+              />
+            )
+          : (
+              <i
+              data-id={product.id}
+              className="icon rp-close"
+              onClick={close}
+              role="button"
+              />
+            )}
+      </div>
       <div className="rp-card-image-box">
         <CardImage
           id={product.id}

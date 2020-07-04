@@ -65,6 +65,7 @@ class Carousel extends React.Component {
 
   handleStarClick(e) {
     const { allProducts } = this.state;
+    console.log('Star Click ID=', e.target.dataset.id)
     this.toggleModal();
     this.setState({ clickedProd: allProducts[e.target.dataset.id] });
   }

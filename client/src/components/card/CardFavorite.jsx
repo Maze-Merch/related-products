@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CardFavorite = (id, openModal, cardType, close) => {
-  console.log('CardFavorite props= ', close);
+  // console.log('CardFavorite openModal= ', openModal);
   return (
     <div className="rp-favorite">
       {cardType !== 'outfit'

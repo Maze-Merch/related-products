@@ -139,13 +139,13 @@ p.rp-card-text {
   /* content: "\f005"; */
   font-size: 20px;
 }
-.rp-star::before{
+.rp-favorite .rp-star::before{
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
   content: "\f005";
   color: #fff;
 }
-i.rp-star:hover::before {
+.rp-favorite i.rp-star:hover::before {
   color: hsla(54, 83%, 55%, 1.00);
   font-family: "Font Awesome 5 Free";
   font-weight: 900;

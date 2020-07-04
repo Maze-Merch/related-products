@@ -35,7 +35,9 @@ class MyOutfits extends React.Component {
     const { det, style } = this.props;
     const details = det;
     const styles = style;
-    // console.log('Details from props', details);
+    // console.log(
+    //   'Details from props', details,
+    //   'Styles from props', styles);
     // let count = 0;
     const prodInfo = {
       idx: details.id,
@@ -63,6 +65,8 @@ class MyOutfits extends React.Component {
   }
 
   handleCloseClick(e) {
+    // e.preventDefault();
+    console.log('TARGET ID=', e.target.dataset.id);
     console.log('Close Click!');
     this.setState({ display: false });
   }
@@ -98,9 +102,9 @@ class MyOutfits extends React.Component {
               ?
               <Card
                 product={product}
-                openModal={this.handleStarClick}
-                key={i}
+                // openModal={this.handleStarClick}
                 type={cardType}
+                key={i}
                 close={this.handleCloseClick}
               />
               : null
