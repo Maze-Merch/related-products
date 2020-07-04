@@ -5,7 +5,7 @@ import CardBody from './CardBody';
 // import styles from './exampleData/prodStyles.json';
 
 const Card = ({product, openModal, cardType, close}) => {
-  console.log('Card Product =', product);
+  // console.log('Card Product =', product);
   return (
     <div className="rp-card">
       <div className="rp-favorite">

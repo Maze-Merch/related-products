@@ -125,7 +125,7 @@ class Carousel extends React.Component {
           <Modal
             displayModal={show}
             closeModal={this.toggleModal}
-            currentProd={currentProdFeat}
+            currentProd={currentProd}
             compProd={clickedProd}
           />
         </div>

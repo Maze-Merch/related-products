@@ -3,7 +3,7 @@ import ModalCompareTable from './ModalCompareTable';
 
 const Modal = ({displayModal, closeModal, currentProd, compProd, allProd}) => {
 // console.log('compProd', compProd);
-// console.log('currentProd', currentProd);
+console.log('currentProd', currentProd);
 
   function displayInfo() {
     return (

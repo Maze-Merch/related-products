@@ -28,6 +28,10 @@ class App extends React.Component {
     this.dataFetcher();
   }
 
+  componentDidUpdate() {
+    console.log('currenProd', this.state.currentProd);
+  }
+
   getRelIds() {
     const { currProdId } = this.state;
     let relIds = [];

@@ -19,13 +19,13 @@ class MyOutfits extends React.Component {
   }
 
   componentDidMount() {
-    this.buildCardData();
+    // this.buildCardData();
   }
 
   componentDidUpdate() {
     const { allProducts } = this.state;
     if (allProducts !== this.cardData) {
-      // console.log('here in update if');
+      console.log('here in update if');
       this.setState({ allProducts: this.cardData });
     }
     // console.log('Did Update state = ', this.state)
@@ -61,14 +61,15 @@ class MyOutfits extends React.Component {
 
   handleAddClick(e) {
     console.log('TARGET ID=', e.target.dataset.id);
+    this.buildCardData();
     this.setState({ addToId: e.target.dataset.id, display: true});
   }
 
   handleCloseClick(e) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log('TARGET ID=', e.target.dataset.id);
     console.log('Close Click!');
-    this.setState({ display: false });
+    this.setState({ display: !display });
   }
 
   handleKeyPress(e) {
