@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('currenProd', this.state.currentProd);
+    // console.log('currentProd', this.state.currentProd);
   }
 
   getRelIds() {
