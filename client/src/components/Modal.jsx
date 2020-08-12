@@ -2,13 +2,11 @@ import React from 'react';
 import _ from 'lodash';
 import ModalCompareTable from './ModalCompareTable';
 
-
 const Modal = ({displayModal, closeModal, currentProd, compProd, allProd}) => {
   console.log(
     'Modal compProd', compProd,
     'Modal currentProd', currentProd,
   );
-
 
   const buildTable = () => {
   // account for diff lengths?
@@ -59,7 +57,7 @@ const Modal = ({displayModal, closeModal, currentProd, compProd, allProd}) => {
                   <td scope="row"><i className="fas fa-check" /></td>
                   <td> {val.feature} - {val.value}</td>
                   {compProd.features.map((compVal, i) => (
-                    val.feature === compVal.feature ? <td><i className="fas fa-check" /></td> : <td><i className="far fa-times" /></td>
+                    val.feature === compVal.feature ? <td><i className="fas fa-check" /></td> : <td><i className="fas fa-times" /></td>
                   ))}
                 </tr>
               ))
