@@ -1,6 +1,20 @@
-#rpCarousel, #myOutfits h4 {
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Open+Sans:wght@300;600&display=swap');
+
+.container {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h4 {
+  font-family: 'Libre Caslon Text', serif;
   color: rgba(0, 0, 0, 0.70);
 }
+
+/* #rpCarousel, #myOutfits h4 {
+  font-family: 'Libre Caslon Text', serif;
+  color: rgba(0, 0, 0, 0.70);
+} */
 #rpCarousel {
   margin-bottom: 35px;
 }
@@ -116,13 +130,17 @@
 .rp-card-category, p, .rp-card-price {
   font-size: .75rem;
 }
+.rp-card-price {
+  font-weight: 600;
+  font-size: 14px;
+}
 .rp-card-body h5 {
   font-size: 14px;
   font-weight: 700;
-  /* margin-bottom: 0px; */
+  margin-bottom: 0px;
 }
 p.rp-card-text {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 .rp-favorite {
   position: absolute;

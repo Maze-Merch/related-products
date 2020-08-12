@@ -1,0 +1,37 @@
+<tr>
+  <td scope="row"><i className="fas fa-check"></i></td>
+  <td>Sole - Rubber</td>
+  <td>Buttons - Brass</td>
+  <td><i className="fas fa-check"></i></td>
+</tr>
+<tr>
+  <td scope="row"><i className="fas fa-check"></i></td>
+  <td>Material - FullControlSkin</td>
+  <td>Buttons - Brass</td>
+  <td><i className="fas fa-check"></i></td>
+</tr>
+<tr>
+  <td scope="row"><i className="fas fa-check"></i></td>
+  <td>Mid-Sole - ControlSupport Arch Bridge</td>
+  <td>Buttons - Brass</td>
+  <td><i className="fas fa-check"></i></td>
+</tr>
+<tr>
+  <td scope="row"><i className="fas fa-check"></i></td>
+  <td>Stitching - Double Stitch</td>
+  <td>Buttons - Brass</td>
+  <td><i className="fas fa-check"></i></td>
+</tr>
+
+
+
+for (let j = 0; j <= compFeat.length - 1; j += 1) {
+  // check if they have the same value
+  let p2Feat = compFeat[j].feature;
+  let p2Valu = compFeat[j].value;
+  tableRow = `<tr>
+    <td scope="row"><i className="fas fa-check"></i></td>
+    <td>${p1Feat} - ${p1Valu}</td>
+    <td>${p2Feat} - ${p2Valu}</td>
+    <td><i className="fas fa-check"></i></td>
+  </tr>`;

@@ -19,6 +19,8 @@
   },
   "keywords": [],
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "babel-jest": "^26.0.1",
     "babel-preset-airbnb": "^5.0.0",
     "concurrently": "^5.2.0",
