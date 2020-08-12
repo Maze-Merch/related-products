@@ -6,6 +6,7 @@ const CardBody = ({name, slogan, desc, cat, price, stName, salePr}) => {
   let ucCat = cat.toUpperCase();
 
   const starNum = () => (Math.floor(Math.random() * 5) + 1);
+  const ratingNum = () => (Math.floor(Math.random() * 621) + 1);
 
   return (
 
@@ -16,6 +17,7 @@ const CardBody = ({name, slogan, desc, cat, price, stName, salePr}) => {
       <div className="rp-card-price">$ {price}</div>
       <div className="rp-card-stars">
         <Rating name="read-only" defaultValue={starNum()} size="small" />
+        <span className="rating-number">&nbsp; ({ratingNum()})</span>
       </div>
     </div>
   );

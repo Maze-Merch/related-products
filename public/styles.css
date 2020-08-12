@@ -4,6 +4,8 @@
 
 .container {
   font-family: 'Open Sans', sans-serif;
+  color: #222;
+  margin-top: 20px;
 }
 
 h4 {
@@ -133,6 +135,9 @@ h4 {
 .rp-card-price {
   font-weight: 600;
   font-size: 14px;
+}
+.rating-number {
+  font-size: 11px;
 }
 .rp-card-body h5 {
   font-size: 14px;
